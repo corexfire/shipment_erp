@@ -18,5 +18,5 @@ func main() {
 
 	routes.SetupRoutes(r)
 
-	r.Run(":8080") // Runs on localhost:8080 by default
+	r.Run(":8282") // Runs on localhost:8080 by default
 }

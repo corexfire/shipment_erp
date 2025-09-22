@@ -9,65 +9,70 @@ import (
 // SetupRoutes initializes all routes
 func SetupRoutes(r *gin.Engine) {
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "landing.html", gin.H{
-			"title": "Home",
+		c.HTML(http.StatusOK, "ecommarce.html", gin.H{
+			"title": "eCommarce",
 		})
 	})
-	r.GET("/features", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "features.html", gin.H{
-			"title": "Features",
-		})
-	})
-	r.GET("/our-team", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "our-team.html", gin.H{
-			"title": "Our Team",
-		})
-	})
-	r.GET("/faqs", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "faqs.html", gin.H{
-			"title": "FAQ's",
-		})
-	})
-	r.GET("/contact", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "contact.html", gin.H{
-			"title": "Contact",
-		})
-	})
-	r.GET("/login", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "login.html", gin.H{
-			"title": "Login",
-		})
-	})
-	r.GET("/register", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "register.html", gin.H{
-			"title": "Register",
-		})
-	})
-	r.GET("/reset-password", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "reset-password.html", gin.H{
-			"title": "Reset Password",
-		})
-	})
-	r.GET("/forget-password", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "forget-password.html", gin.H{
-			"title": "Forget Password",
-		})
-	})
-	r.GET("/confirm-mail", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "confirm-mail.html", gin.H{
-			"title": "Confirm Mail",
-		})
-	})
-	r.GET("/lock-screen", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "lock-screen.html", gin.H{
-			"title": "Lock Screen",
-		})
-	})
-	r.GET("/logout", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "logout.html", gin.H{
-			"title": "Logout",
-		})
-	})
+	//r.GET("/", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "landing.html", gin.H{
+	//		"title": "Home",
+	//	})
+	//})
+	//r.GET("/features", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "features.html", gin.H{
+	//		"title": "Features",
+	//	})
+	//})
+	//r.GET("/our-team", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "our-team.html", gin.H{
+	//		"title": "Our Team",
+	//	})
+	//})
+	//r.GET("/faqs", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "faqs.html", gin.H{
+	//		"title": "FAQ's",
+	//	})
+	//})
+	//r.GET("/contact", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "contact.html", gin.H{
+	//		"title": "Contact",
+	//	})
+	//})
+	//r.GET("/login", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "login.html", gin.H{
+	//		"title": "Login",
+	//	})
+	//})
+	//r.GET("/register", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "register.html", gin.H{
+	//		"title": "Register",
+	//	})
+	//})
+	//r.GET("/reset-password", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "reset-password.html", gin.H{
+	//		"title": "Reset Password",
+	//	})
+	//})
+	//r.GET("/forget-password", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "forget-password.html", gin.H{
+	//		"title": "Forget Password",
+	//	})
+	//})
+	//r.GET("/confirm-mail", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "confirm-mail.html", gin.H{
+	//		"title": "Confirm Mail",
+	//	})
+	//})
+	//r.GET("/lock-screen", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "lock-screen.html", gin.H{
+	//		"title": "Lock Screen",
+	//	})
+	//})
+	//r.GET("/logout", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "logout.html", gin.H{
+	//		"title": "Logout",
+	//	})
+	//})
 
 	// Dashboard Routes
 	dashboard := r.Group("/dashboard")
