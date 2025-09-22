@@ -1,0 +1,832 @@
+{{ template "dashboard_top" . }}
+
+<div class="main-content-container overflow-hidden">
+	<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+		<div>
+			<h3 class="mb-0">Bill of Landing (BL)</h3>
+			<p class="text-muted mb-0">Section 2 - Shipping & Transit • Shipping and cargo documentation</p>
+		</div>
+		<div class="d-flex gap-2">
+			<button class="btn btn-outline-secondary btn-sm" onclick="window.history.back()">
+				<i class="ri-arrow-left-line me-1"></i>Back to Documents
+			</button>
+			<button class="btn btn-outline-primary btn-sm" onclick="printBillOfLanding()">
+				<i class="ri-printer-line me-1"></i>Print
+			</button>
+			<button class="btn btn-outline-success btn-sm" onclick="downloadPDF()">
+				<i class="ri-download-line me-1"></i>Download PDF
+			</button>
+			<button class="btn btn-primary btn-sm" onclick="shareBillOfLanding()">
+				<i class="ri-share-line me-1"></i>Share
+			</button>
+		</div>
+	</div>
+
+	<!-- Document Status -->
+	<div class="row mb-4">
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-check-double-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Document Status</span>
+							<h3 class="fs-20 mt-1 mb-0 text-success">Issued</h3>
+							<span class="fs-12 text-success">Original BL</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-ship-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Vessel</span>
+							<h3 class="fs-20 mt-1 mb-0">COSCO</h3>
+							<span class="fs-12 text-muted">MV COSCO SHANGHAI</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-calendar-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">ETD / ETA</span>
+							<h3 class="fs-20 mt-1 mb-0">Jan 20</h3>
+							<span class="fs-12 text-muted">Feb 05, 2024</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-container-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Container</span>
+							<h3 class="fs-20 mt-1 mb-0">20' FCL</h3>
+							<span class="fs-12 text-muted">COSU1234567</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bill of Landing Document -->
+	<div class="card bg-white border-0 rounded-3 mb-4">
+		<div class="card-body p-0">
+			<div class="bill-of-landing-container p-5" id="billOfLandingContent">
+				<!-- Header -->
+				<div class="row mb-5">
+					<div class="col-md-8">
+						<div class="carrier-info">
+							<h2 class="text-primary mb-3">BILL OF LANDING</h2>
+							<div class="mb-3">
+								<h4 class="mb-2 text-primary">COSCO SHIPPING LINES</h4>
+								<p class="text-muted mb-1">Shanghai Office: No. 378 Dongdaming Road</p>
+								<p class="text-muted mb-1">Hongkou District, Shanghai 200080</p>
+								<p class="text-muted mb-1">People's Republic of China</p>
+								<p class="text-muted mb-1">Tel: +86-21-6506-8888</p>
+								<p class="text-muted mb-0">Email: shanghai@cosco-shipping.com</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 text-end">
+						<div class="bl-details">
+							<div class="bg-primary bg-opacity-10 p-3 rounded">
+								<table class="table table-borderless mb-0">
+									<tr>
+										<td class="text-end fw-medium">B/L No:</td>
+										<td class="text-end"><strong>COSU240115001</strong></td>
+									</tr>
+									<tr>
+										<td class="text-end fw-medium">Issue Date:</td>
+										<td class="text-end">January 20, 2024</td>
+									</tr>
+									<tr>
+										<td class="text-end fw-medium">Booking No:</td>
+										<td class="text-end">COSCO240115SH</td>
+									</tr>
+									<tr>
+										<td class="text-end fw-medium">Export Ref:</td>
+										<td class="text-end">ORD-2024-001</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Shipper and Consignee Information -->
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<div class="shipper-info">
+							<h6 class="text-primary mb-3">SHIPPER:</h6>
+							<div class="bg-light p-3 rounded">
+								<h6 class="mb-2">Shanghai Textile Manufacturing Co., Ltd.</h6>
+								<p class="mb-1">No. 888 Huaihai Middle Road</p>
+								<p class="mb-1">Xuhui District, Shanghai 200031</p>
+								<p class="mb-1">People's Republic of China</p>
+								<p class="mb-1">Tel: +86-21-6431-8888</p>
+								<p class="mb-1">Email: export@shanghaitextile.com</p>
+								<p class="mb-0">Export License: EXP-2024-SH-001</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="consignee-info">
+							<h6 class="text-primary mb-3">CONSIGNEE:</h6>
+							<div class="bg-light p-3 rounded">
+								<h6 class="mb-2">PT. Maju Jaya</h6>
+								<p class="mb-1">Jl. Sudirman No. 123</p>
+								<p class="mb-1">Jakarta Pusat 10220</p>
+								<p class="mb-1">Indonesia</p>
+								<p class="mb-1">Tel: +62-21-5555-1234</p>
+								<p class="mb-1">Email: procurement@majujaya.co.id</p>
+								<p class="mb-0">Import License: IMP-2024-JKT-001</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Notify Party and Agent -->
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<div class="notify-party">
+							<h6 class="text-primary mb-3">NOTIFY PARTY:</h6>
+							<div class="bg-light p-3 rounded">
+								<h6 class="mb-2">PT. Maju Jaya - Logistics Dept.</h6>
+								<p class="mb-1">Jl. Raya Bekasi KM 25</p>
+								<p class="mb-1">Bekasi Industrial Estate</p>
+								<p class="mb-1">Bekasi 17530, West Java, Indonesia</p>
+								<p class="mb-1">Contact: Mr. Budi Santoso</p>
+								<p class="mb-1">Tel: +62-21-8888-5678</p>
+								<p class="mb-0">Mobile: +62-812-3456-7890</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="agent-info">
+							<h6 class="text-primary mb-3">DELIVERY AGENT:</h6>
+							<div class="bg-light p-3 rounded">
+								<h6 class="mb-2">COSCO Shipping Agency (Indonesia)</h6>
+								<p class="mb-1">Jl. Jenderal Sudirman Kav. 25</p>
+								<p class="mb-1">Jakarta 12920, Indonesia</p>
+								<p class="mb-1">Tel: +62-21-5290-8888</p>
+								<p class="mb-1">Email: jakarta@cosco-agency.co.id</p>
+								<p class="mb-1">Contact: Ms. Sari Dewi</p>
+								<p class="mb-0">License: AGT-2024-JKT-COSCO</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Vessel and Voyage Information -->
+				<div class="row mb-4">
+					<div class="col-md-4">
+						<div class="vessel-info">
+							<h6 class="text-primary mb-3">VESSEL INFORMATION:</h6>
+							<table class="table table-sm table-borderless">
+								<tr>
+									<td class="fw-medium">Vessel Name:</td>
+									<td>MV COSCO SHANGHAI</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Voyage No:</td>
+									<td>024E</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">IMO Number:</td>
+									<td>9876543</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Flag:</td>
+									<td>China</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Built:</td>
+									<td>2018</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">DWT:</td>
+									<td>14,000 MT</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="port-info">
+							<h6 class="text-primary mb-3">PORT INFORMATION:</h6>
+							<table class="table table-sm table-borderless">
+								<tr>
+									<td class="fw-medium">Port of Loading:</td>
+									<td>Shanghai, China</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Port of Discharge:</td>
+									<td>Tanjung Priok, Jakarta</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Place of Receipt:</td>
+									<td>Shanghai Port</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Place of Delivery:</td>
+									<td>Tanjung Priok Port</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Final Destination:</td>
+									<td>Jakarta, Indonesia</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="schedule-info">
+							<h6 class="text-primary mb-3">SCHEDULE:</h6>
+							<table class="table table-sm table-borderless">
+								<tr>
+									<td class="fw-medium">ETD Shanghai:</td>
+									<td>January 20, 2024</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">ETA Jakarta:</td>
+									<td>February 05, 2024</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Transit Time:</td>
+									<td>16 Days</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Cut-off Date:</td>
+									<td>January 18, 2024</td>
+								</tr>
+								<tr>
+									<td class="fw-medium">Free Time:</td>
+									<td>7 Days</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- Container and Cargo Details -->
+				<div class="mb-4">
+					<h6 class="text-primary mb-3">CONTAINER & CARGO DETAILS:</h6>
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead class="table-light">
+								<tr>
+									<th>Container No.</th>
+									<th>Seal No.</th>
+									<th>Container Type</th>
+									<th>Package Qty</th>
+									<th>Package Type</th>
+									<th>Gross Weight (KGS)</th>
+									<th>Net Weight (KGS)</th>
+									<th>Measurement (CBM)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="fw-medium">COSU1234567</td>
+									<td>SH240115001</td>
+									<td>20' FCL</td>
+									<td class="text-center">500</td>
+									<td>Fabric Rolls</td>
+									<td class="text-end">18,500.00</td>
+									<td class="text-end">17,200.00</td>
+									<td class="text-end">37.50</td>
+								</tr>
+							</tbody>
+							<tfoot class="table-light">
+								<tr class="fw-bold">
+									<td colspan="3">TOTAL:</td>
+									<td class="text-center">500</td>
+									<td>Rolls</td>
+									<td class="text-end">18,500.00 KGS</td>
+									<td class="text-end">17,200.00 KGS</td>
+									<td class="text-end">37.50 CBM</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+
+				<!-- Cargo Description -->
+				<div class="mb-4">
+					<h6 class="text-primary mb-3">DESCRIPTION OF GOODS:</h6>
+					<div class="bg-light p-4 rounded">
+						<div class="row">
+							<div class="col-md-8">
+								<p class="mb-2"><strong>COTTON FABRIC ROLLS</strong></p>
+								<p class="mb-2">500 Rolls of Premium Cotton Fabric consisting of:</p>
+								<ul class="mb-2">
+									<li>300 Rolls - Premium Cotton Fabric (100% Cotton, Plain Weave, 150cm x 50m, 200gsm, Natural White)</li>
+									<li>150 Rolls - Organic Cotton Fabric (100% Organic Cotton, Twill Weave, 150cm x 50m, 220gsm, Cream)</li>
+									<li>50 Rolls - Cotton Blend Fabric (80% Cotton, 20% Polyester, 150cm x 50m, 180gsm, Light Blue)</li>
+								</ul>
+								<p class="mb-2"><strong>Marks & Numbers:</strong> MJ-2024-001</p>
+								<p class="mb-2"><strong>Country of Origin:</strong> People's Republic of China</p>
+								<p class="mb-0"><strong>HS Code:</strong> 5208.11.00, 5208.12.00, 5208.21.00</p>
+							</div>
+							<div class="col-md-4">
+								<div class="cargo-specs">
+									<h6 class="mb-2">CARGO SPECIFICATIONS:</h6>
+									<table class="table table-sm table-borderless">
+										<tr>
+											<td>Total Packages:</td>
+											<td class="fw-medium">500 Rolls</td>
+										</tr>
+										<tr>
+											<td>Gross Weight:</td>
+											<td class="fw-medium">18,500 KGS</td>
+										</tr>
+										<tr>
+											<td>Net Weight:</td>
+											<td class="fw-medium">17,200 KGS</td>
+										</tr>
+										<tr>
+											<td>Volume:</td>
+											<td class="fw-medium">37.50 CBM</td>
+										</tr>
+										<tr>
+											<td>Container Util:</td>
+											<td class="fw-medium">85%</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Freight and Charges -->
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<div class="freight-info">
+							<h6 class="text-primary mb-3">FREIGHT & CHARGES:</h6>
+							<div class="table-responsive">
+								<table class="table table-sm table-bordered">
+									<thead class="table-light">
+										<tr>
+											<th>Description</th>
+											<th>Rate</th>
+											<th>Currency</th>
+											<th>Amount</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Ocean Freight</td>
+											<td>1,200.00</td>
+											<td>USD</td>
+											<td class="text-end">1,200.00</td>
+										</tr>
+										<tr>
+											<td>Terminal Handling</td>
+											<td>150.00</td>
+											<td>USD</td>
+											<td class="text-end">150.00</td>
+										</tr>
+										<tr>
+											<td>Documentation Fee</td>
+											<td>50.00</td>
+											<td>USD</td>
+											<td class="text-end">50.00</td>
+										</tr>
+										<tr>
+											<td>Seal Fee</td>
+											<td>25.00</td>
+											<td>USD</td>
+											<td class="text-end">25.00</td>
+										</tr>
+									</tbody>
+									<tfoot class="table-primary">
+										<tr class="fw-bold">
+											<td colspan="3">TOTAL FREIGHT:</td>
+											<td class="text-end">USD 1,425.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="payment-terms">
+							<h6 class="text-primary mb-3">PAYMENT TERMS:</h6>
+							<div class="bg-warning bg-opacity-10 p-3 rounded border-start border-warning border-4">
+								<p class="mb-2"><strong>Freight:</strong> PREPAID</p>
+								<p class="mb-2"><strong>Payment Method:</strong> Letter of Credit</p>
+								<p class="mb-2"><strong>Payment Status:</strong> PAID</p>
+								<p class="mb-2"><strong>Payment Date:</strong> January 18, 2024</p>
+								<p class="mb-2"><strong>Reference:</strong> LC-2024-STM-001</p>
+								<p class="mb-0"><strong>Bank:</strong> Bank of China, Shanghai Branch</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Terms and Conditions -->
+				<div class="mb-4">
+					<h6 class="text-primary mb-3">TERMS AND CONDITIONS:</h6>
+					<div class="bg-light p-3 rounded">
+						<div class="row">
+							<div class="col-md-6">
+								<ol class="mb-0 small">
+									<li class="mb-1">This Bill of Landing is issued subject to the terms and conditions of COSCO Shipping Lines.</li>
+									<li class="mb-1">The carrier shall not be liable for any loss or damage unless caused by negligence.</li>
+									<li class="mb-1">Delivery will be made against surrender of original Bill of Landing.</li>
+									<li class="mb-1">Free storage time at destination: 7 days from vessel arrival.</li>
+									<li class="mb-1">Demurrage charges apply after free time expires.</li>
+								</ol>
+							</div>
+							<div class="col-md-6">
+								<ol start="6" class="mb-0 small">
+									<li class="mb-1">Container to be returned within 14 days of discharge.</li>
+									<li class="mb-1">All customs formalities at consignee's expense and risk.</li>
+									<li class="mb-1">Cargo insurance is recommended and at shipper's arrangement.</li>
+									<li class="mb-1">Any disputes to be settled under Chinese Maritime Law.</li>
+									<li class="mb-1">This B/L is non-negotiable unless marked "TO ORDER".</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Special Instructions -->
+				<div class="mb-4">
+					<h6 class="text-primary mb-3">SPECIAL INSTRUCTIONS:</h6>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="handling-instructions bg-info bg-opacity-10 p-3 rounded">
+								<h6 class="text-info mb-2">HANDLING INSTRUCTIONS:</h6>
+								<ul class="list-unstyled mb-0">
+									<li class="mb-1"><i class="ri-alert-line text-info me-2"></i>Handle with care - Fragile cargo</li>
+									<li class="mb-1"><i class="ri-drop-line text-info me-2"></i>Keep dry - Protect from moisture</li>
+									<li class="mb-1"><i class="ri-arrow-up-line text-info me-2"></i>This way up - Do not invert</li>
+									<li class="mb-1"><i class="ri-stack-line text-info me-2"></i>Maximum stacking: 3 high</li>
+									<li class="mb-0"><i class="ri-thermometer-line text-info me-2"></i>Temperature controlled storage</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="delivery-instructions bg-success bg-opacity-10 p-3 rounded">
+								<h6 class="text-success mb-2">DELIVERY INSTRUCTIONS:</h6>
+								<ul class="list-unstyled mb-0">
+									<li class="mb-1"><i class="ri-phone-line text-success me-2"></i>Notify consignee 24 hours before arrival</li>
+									<li class="mb-1"><i class="ri-time-line text-success me-2"></i>Delivery hours: 08:00 - 17:00 weekdays</li>
+									<li class="mb-1"><i class="ri-truck-line text-success me-2"></i>Arrange suitable transport equipment</li>
+									<li class="mb-1"><i class="ri-shield-check-line text-success me-2"></i>Inspect cargo before acceptance</li>
+									<li class="mb-0"><i class="ri-file-text-line text-success me-2"></i>Obtain delivery receipt</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Signatures and Stamps -->
+				<div class="row">
+					<div class="col-md-4">
+						<div class="carrier-signature">
+							<h6 class="text-primary mb-3">CARRIER'S SIGNATURE:</h6>
+							<div class="signature-box border rounded p-4 text-center bg-light" style="min-height: 120px;">
+								<div class="mt-3">
+									<p class="mb-1"><strong>Captain Wang Lei</strong></p>
+									<p class="mb-1">Master, MV COSCO SHANGHAI</p>
+									<p class="mb-1">COSCO Shipping Lines</p>
+									<p class="mb-0 text-muted">Date: January 20, 2024</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="agent-signature">
+							<h6 class="text-primary mb-3">AGENT'S SIGNATURE:</h6>
+							<div class="signature-box border rounded p-4 text-center bg-light" style="min-height: 120px;">
+								<div class="mt-3">
+									<p class="mb-1"><strong>Liu Xiaoming</strong></p>
+									<p class="mb-1">Port Agent</p>
+									<p class="mb-1">Shanghai Port Authority</p>
+									<p class="mb-0 text-muted">Date: January 20, 2024</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="official-stamp">
+							<h6 class="text-primary mb-3">OFFICIAL STAMP:</h6>
+							<div class="stamp-box border rounded p-4 text-center bg-light" style="min-height: 120px;">
+								<div class="mt-2">
+									<div class="company-stamp mx-auto mb-2" style="width: 90px; height: 90px; border: 3px solid #0d6efd; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+										<small class="text-primary fw-bold text-center">COSCO<br>SHIPPING<br>LINES</small>
+									</div>
+									<p class="mb-0 text-muted">Official Carrier Seal</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Document Actions -->
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-header bg-transparent border-bottom p-4">
+					<h5 class="mb-0">
+						<i class="ri-history-line me-2 text-primary"></i>Document History
+					</h5>
+				</div>
+				<div class="card-body p-4">
+					<div class="timeline">
+						<div class="timeline-item">
+							<div class="timeline-marker bg-success"></div>
+							<div class="timeline-content">
+								<h6 class="mb-1">Bill of Landing Issued</h6>
+								<p class="text-muted mb-1">Original B/L issued and released to shipper</p>
+								<small class="text-muted">January 20, 2024 - 4:30 PM</small>
+							</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-marker bg-info"></div>
+							<div class="timeline-content">
+								<h6 class="mb-1">Cargo Loaded</h6>
+								<p class="text-muted mb-1">Container COSU1234567 loaded on vessel MV COSCO SHANGHAI</p>
+								<small class="text-muted">January 20, 2024 - 2:00 PM</small>
+							</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-marker bg-warning"></div>
+							<div class="timeline-content">
+								<h6 class="mb-1">Container Sealed</h6>
+								<p class="text-muted mb-1">Container sealed with seal number SH240115001</p>
+								<small class="text-muted">January 20, 2024 - 10:00 AM</small>
+							</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-marker bg-primary"></div>
+							<div class="timeline-content">
+								<h6 class="mb-1">Cargo Received</h6>
+								<p class="text-muted mb-1">Cargo received at Shanghai Port terminal</p>
+								<small class="text-muted">January 19, 2024 - 3:00 PM</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-header bg-transparent border-bottom p-4">
+					<h5 class="mb-0">
+						<i class="ri-information-line me-2 text-primary"></i>Document Info
+					</h5>
+				</div>
+				<div class="card-body p-4">
+					<div class="d-flex flex-column gap-3">
+						<div class="d-flex justify-content-between">
+							<span class="text-muted">B/L Number:</span>
+							<span class="fw-medium">COSU240115001</span>
+						</div>
+						<div class="d-flex justify-content-between">
+							<span class="text-muted">File Size:</span>
+							<span class="fw-medium">3.2 MB</span>
+						</div>
+						<div class="d-flex justify-content-between">
+							<span class="text-muted">Issue Date:</span>
+							<span class="fw-medium">Jan 20, 2024</span>
+						</div>
+						<div class="d-flex justify-content-between">
+							<span class="text-muted">Validity:</span>
+							<span class="fw-medium">Valid</span>
+						</div>
+						<div class="d-flex justify-content-between">
+							<span class="text-muted">Type:</span>
+							<span class="fw-medium">Original B/L</span>
+						</div>
+						<div class="d-flex justify-content-between">
+							<span class="text-muted">Copies:</span>
+							<span class="fw-medium">3 Originals</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Quick Actions -->
+			<div class="card bg-info bg-opacity-10 border-0 rounded-3">
+				<div class="card-body p-4">
+					<h6 class="text-info mb-3">
+						<i class="ri-tools-line me-2"></i>Quick Actions
+					</h6>
+					<div class="d-grid gap-2">
+						<button class="btn btn-outline-info btn-sm" onclick="trackVessel()">
+							<i class="ri-ship-line me-1"></i>Track Vessel
+						</button>
+						<button class="btn btn-outline-primary btn-sm" onclick="surrenderBL()">
+							<i class="ri-hand-heart-line me-1"></i>Surrender B/L
+						</button>
+						<button class="btn btn-outline-success btn-sm" onclick="requestDelivery()">
+							<i class="ri-truck-line me-1"></i>Request Delivery
+						</button>
+						<button class="btn btn-outline-warning btn-sm" onclick="amendBL()">
+							<i class="ri-edit-line me-1"></i>Amend B/L
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+// Document Actions
+function printBillOfLanding() {
+	const printContent = document.getElementById('billOfLandingContent').innerHTML;
+	const originalContent = document.body.innerHTML;
+	
+	document.body.innerHTML = `
+		<div style="padding: 20px;">
+			${printContent}
+		</div>
+	`;
+	
+	window.print();
+	document.body.innerHTML = originalContent;
+	location.reload();
+}
+
+function downloadPDF() {
+	showSuccessToast('Bill of Landing PDF downloaded successfully.');
+}
+
+function shareBillOfLanding() {
+	if (navigator.share) {
+		navigator.share({
+			title: 'Bill of Landing COSU240115001',
+			text: 'Bill of Landing for Order ORD-2024-001 - PT. Maju Jaya',
+			url: window.location.href
+		});
+	} else {
+		navigator.clipboard.writeText(window.location.href).then(() => {
+			showSuccessToast('Bill of Landing link copied to clipboard!');
+		});
+	}
+}
+
+function trackVessel() {
+	showSuccessToast('Vessel tracking: MV COSCO SHANGHAI is currently en route to Jakarta. ETA: Feb 05, 2024');
+}
+
+function surrenderBL() {
+	if (confirm('Surrender this Bill of Landing? This action cannot be undone.')) {
+		showSuccessToast('Bill of Landing surrender request submitted. Cargo will be released upon arrival.');
+	}
+}
+
+function requestDelivery() {
+	const deliveryOptions = prompt('Select delivery option:\n1. Port Pickup\n2. Door Delivery\n3. CFS Delivery\n\nEnter number (1-3):');
+	
+	if (deliveryOptions && ['1', '2', '3'].includes(deliveryOptions)) {
+		const options = {
+			'1': 'Port Pickup',
+			'2': 'Door Delivery',
+			'3': 'CFS Delivery'
+		};
+		showSuccessToast(`${options[deliveryOptions]} request submitted. Delivery agent will contact you.`);
+	}
+}
+
+function amendBL() {
+	const amendmentReason = prompt('Please specify the reason for B/L amendment:');
+	if (amendmentReason) {
+		showSuccessToast('B/L amendment request submitted. Carrier will review and respond within 24 hours.');
+	}
+}
+
+// Utility Functions
+function showSuccessToast(message) {
+	const toast = document.createElement('div');
+	toast.className = 'toast align-items-center text-white bg-success border-0 position-fixed top-0 end-0 m-3';
+	toast.style.zIndex = '9999';
+	toast.innerHTML = `
+		<div class="d-flex">
+			<div class="toast-body">${message}</div>
+			<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+		</div>
+	`;
+	document.body.appendChild(toast);
+	const bsToast = new bootstrap.Toast(toast);
+	bsToast.show();
+	
+	toast.addEventListener('hidden.bs.toast', () => {
+		document.body.removeChild(toast);
+	});
+}
+
+// Print styles
+const printStyles = `
+<style>
+@media print {
+	body * { visibility: hidden; }
+	.bill-of-landing-container, .bill-of-landing-container * { visibility: visible; }
+	.bill-of-landing-container { position: absolute; left: 0; top: 0; width: 100%; }
+	.btn, .card-header, .timeline { display: none !important; }
+	.table { font-size: 11px; }
+	.company-info h2 { color: #0d6efd !important; }
+	.text-primary { color: #0d6efd !important; }
+	.bg-light { background-color: #f8f9fa !important; }
+	.border { border: 1px solid #dee2e6 !important; }
+}
+</style>
+`;
+
+document.head.insertAdjacentHTML('beforeend', printStyles);
+</script>
+
+<style>
+.bill-of-landing-container {
+	font-family: 'Arial', sans-serif;
+	line-height: 1.6;
+}
+
+.timeline {
+	position: relative;
+	padding-left: 30px;
+}
+
+.timeline::before {
+	content: '';
+	position: absolute;
+	left: 15px;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: #e9ecef;
+}
+
+.timeline-item {
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.timeline-marker {
+	position: absolute;
+	left: -22px;
+	top: 5px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	box-shadow: 0 0 0 2px #e9ecef;
+}
+
+.timeline-content h6 {
+	margin-bottom: 5px;
+	color: #495057;
+}
+
+.company-stamp {
+	font-size: 9px;
+	line-height: 1.1;
+}
+
+.signature-box, .stamp-box {
+	background-color: #fafafa;
+}
+
+@media print {
+	.card, .btn, .timeline { display: none !important; }
+	.bill-of-landing-container { box-shadow: none !important; }
+}
+</style>
+
+{{ template "dashboard_bottom" . }}

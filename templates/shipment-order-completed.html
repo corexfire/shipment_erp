@@ -1,0 +1,1025 @@
+{{ template "dashboard_top" . }}
+
+<div class="main-content-container overflow-hidden">
+	<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+		<div>
+			<h3 class="mb-0">Completed Orders</h3>
+			<p class="text-muted mb-0">Successfully delivered orders with complete import workflow</p>
+		</div>
+		<div class="d-flex gap-2">
+			<button class="btn btn-outline-success btn-sm">
+				<i class="ri-star-line me-1"></i>Rate Services
+			</button>
+			<button class="btn btn-outline-primary btn-sm">
+				<i class="ri-download-line me-1"></i>Export Report
+			</button>
+			<button class="btn btn-outline-info btn-sm">
+				<i class="ri-file-chart-line me-1"></i>Analytics
+			</button>
+		</div>
+	</div>
+
+	<!-- Completion Statistics -->
+	<div class="row mb-4">
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-check-double-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Total Delivered</span>
+							<h3 class="fs-20 mt-1 mb-0">55</h3>
+							<span class="fs-12 text-success">+8 this month</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-time-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Avg. Delivery Time</span>
+							<h3 class="fs-20 mt-1 mb-0">28 days</h3>
+							<span class="fs-12 text-success">-2 days improved</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-money-dollar-circle-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Total Value</span>
+							<h3 class="fs-20 mt-1 mb-0">Rp 127B</h3>
+							<span class="fs-12 text-success">+15% growth</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-customer-service-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Customer Satisfaction</span>
+							<h3 class="fs-20 mt-1 mb-0">4.8/5</h3>
+							<span class="fs-12 text-success">Excellent rating</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Filter and Search -->
+	<div class="card bg-white border-0 rounded-3 mb-4">
+		<div class="card-body p-4">
+			<div class="row g-3">
+				<div class="col-md-3">
+					<label class="form-label">Delivery Period</label>
+					<select class="form-select">
+						<option value="">All Time</option>
+						<option value="this-month">This Month</option>
+						<option value="last-month">Last Month</option>
+						<option value="last-3-months">Last 3 Months</option>
+						<option value="this-year">This Year</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<label class="form-label">Customer</label>
+					<select class="form-select">
+						<option value="">All Customers</option>
+						<option value="pt-maju-jaya">PT. Maju Jaya</option>
+						<option value="cv-elektronik">CV. Elektronik Prima</option>
+						<option value="pt-mesin">PT. Mesin Industri</option>
+						<option value="cv-kimia">CV. Kimia Sejahtera</option>
+						<option value="pt-otomotif">PT. Otomotif Nusantara</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<label class="form-label">Product Category</label>
+					<select class="form-select">
+						<option value="">All Categories</option>
+						<option value="textiles">Textiles & Garments</option>
+						<option value="electronics">Electronics & Components</option>
+						<option value="machinery">Industrial Machinery</option>
+						<option value="chemicals">Chemical Products</option>
+						<option value="automotive">Automotive Parts</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<label class="form-label">Search</label>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search orders...">
+						<button class="btn btn-outline-secondary" type="button">
+							<i class="ri-search-line"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Completed Orders Table -->
+	<div class="card bg-white border-0 rounded-3 mb-4">
+		<div class="card-body p-0">
+			<div class="default-table-area style-two">
+				<div class="table-responsive">
+					<table class="table align-middle">
+						<thead>
+							<tr>
+								<th scope="col">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="selectAll">
+									</div>
+								</th>
+								<th scope="col">Order Details</th>
+								<th scope="col">Customer</th>
+								<th scope="col">Product</th>
+								<th scope="col">Workflow Progress</th>
+								<th scope="col">Delivery Info</th>
+								<th scope="col">Performance</th>
+								<th scope="col">Value</th>
+								<th scope="col">Rating</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Recently Completed Orders -->
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-check-double-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2023-156</h6>
+											<span class="fs-12 text-muted">Completed: Jan 25, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-11.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">PT. Maju Jaya</h6>
+											<span class="fs-12 text-muted">Textiles Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium fs-14">Cotton Fabric Rolls</span><br>
+										<span class="fs-12 text-muted">Shanghai → Jakarta</span>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 1 ✓</span>
+											<small class="text-muted">VO: 2 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 2 ✓</span>
+											<small class="text-muted">Transit: 18 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 3 ✓</span>
+											<small class="text-muted">PIB: 3 days</small>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium text-success">Delivered</span><br>
+										<span class="fs-12 text-muted">Jan 25, 2024</span><br>
+										<span class="fs-11 text-success">On Time</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">23 days</span><br>
+										<span class="fs-12 text-success">5 days early</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 1.45B</span>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="text-warning me-1">
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+										</div>
+										<span class="fs-12 fw-medium">5.0</span>
+									</div>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#" onclick="viewOrderDetails('ORD-2023-156')"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadInvoice('ORD-2023-156')"><i class="ri-file-download-line me-2"></i>Download Invoice</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadDocuments('ORD-2023-156')"><i class="ri-folder-download-line me-2"></i>Download All Docs</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item" href="#" onclick="reorderItem('ORD-2023-156')"><i class="ri-repeat-line me-2"></i>Reorder</a></li>
+											<li><a class="dropdown-item" href="#" onclick="shareOrder('ORD-2023-156')"><i class="ri-share-line me-2"></i>Share</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-check-double-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2023-148</h6>
+											<span class="fs-12 text-muted">Completed: Jan 20, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-12.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">CV. Elektronik Prima</h6>
+											<span class="fs-12 text-muted">Electronics Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium fs-14">Electronic Components</span><br>
+										<span class="fs-12 text-muted">Singapore → Surabaya</span>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 1 ✓</span>
+											<small class="text-muted">VO: 3 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 2 ✓</span>
+											<small class="text-muted">Transit: 15 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 3 ✓</span>
+											<small class="text-muted">PIB: 4 days</small>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium text-success">Delivered</span><br>
+										<span class="fs-12 text-muted">Jan 20, 2024</span><br>
+										<span class="fs-11 text-success">On Time</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">22 days</span><br>
+										<span class="fs-12 text-success">3 days early</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 2.89B</span>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="text-warning me-1">
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-line"></i>
+										</div>
+										<span class="fs-12 fw-medium">4.8</span>
+									</div>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#" onclick="viewOrderDetails('ORD-2023-148')"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadInvoice('ORD-2023-148')"><i class="ri-file-download-line me-2"></i>Download Invoice</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadDocuments('ORD-2023-148')"><i class="ri-folder-download-line me-2"></i>Download All Docs</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item" href="#" onclick="reorderItem('ORD-2023-148')"><i class="ri-repeat-line me-2"></i>Reorder</a></li>
+											<li><a class="dropdown-item" href="#" onclick="shareOrder('ORD-2023-148')"><i class="ri-share-line me-2"></i>Share</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-check-double-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2023-142</h6>
+											<span class="fs-12 text-muted">Completed: Jan 15, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-13.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">PT. Mesin Industri</h6>
+											<span class="fs-12 text-muted">Machinery Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium fs-14">Industrial Machinery</span><br>
+										<span class="fs-12 text-muted">Tokyo → Jakarta</span>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 1 ✓</span>
+											<small class="text-muted">VO: 4 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 2 ✓</span>
+											<small class="text-muted">Transit: 21 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 3 ✓</span>
+											<small class="text-muted">PIB: 5 days</small>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium text-success">Delivered</span><br>
+										<span class="fs-12 text-muted">Jan 15, 2024</span><br>
+										<span class="fs-11 text-warning">1 day late</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">30 days</span><br>
+										<span class="fs-12 text-warning">1 day delay</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 4.23B</span>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="text-warning me-1">
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-line"></i>
+										</div>
+										<span class="fs-12 fw-medium">4.5</span>
+									</div>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#" onclick="viewOrderDetails('ORD-2023-142')"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadInvoice('ORD-2023-142')"><i class="ri-file-download-line me-2"></i>Download Invoice</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadDocuments('ORD-2023-142')"><i class="ri-folder-download-line me-2"></i>Download All Docs</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item" href="#" onclick="reorderItem('ORD-2023-142')"><i class="ri-repeat-line me-2"></i>Reorder</a></li>
+											<li><a class="dropdown-item" href="#" onclick="shareOrder('ORD-2023-142')"><i class="ri-share-line me-2"></i>Share</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-check-double-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2023-135</h6>
+											<span class="fs-12 text-muted">Completed: Jan 12, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-14.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">CV. Kimia Sejahtera</h6>
+											<span class="fs-12 text-muted">Chemical Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium fs-14">Chemical Products</span><br>
+										<span class="fs-12 text-muted">Busan → Jakarta</span>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 1 ✓</span>
+											<small class="text-muted">VO: 2 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 2 ✓</span>
+											<small class="text-muted">Transit: 16 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 3 ✓</span>
+											<small class="text-muted">PIB: 3 days</small>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium text-success">Delivered</span><br>
+										<span class="fs-12 text-muted">Jan 12, 2024</span><br>
+										<span class="fs-11 text-success">On Time</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">21 days</span><br>
+										<span class="fs-12 text-success">4 days early</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 1.78B</span>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="text-warning me-1">
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+										</div>
+										<span class="fs-12 fw-medium">5.0</span>
+									</div>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#" onclick="viewOrderDetails('ORD-2023-135')"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadInvoice('ORD-2023-135')"><i class="ri-file-download-line me-2"></i>Download Invoice</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadDocuments('ORD-2023-135')"><i class="ri-folder-download-line me-2"></i>Download All Docs</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item" href="#" onclick="reorderItem('ORD-2023-135')"><i class="ri-repeat-line me-2"></i>Reorder</a></li>
+											<li><a class="dropdown-item" href="#" onclick="shareOrder('ORD-2023-135')"><i class="ri-share-line me-2"></i>Share</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-check-double-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2023-128</h6>
+											<span class="fs-12 text-muted">Completed: Jan 08, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-15.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">PT. Otomotif Nusantara</h6>
+											<span class="fs-12 text-muted">Automotive Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium fs-14">Automotive Parts</span><br>
+										<span class="fs-12 text-muted">Guangzhou → Jakarta</span>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 1 ✓</span>
+											<small class="text-muted">VO: 3 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 2 ✓</span>
+											<small class="text-muted">Transit: 19 days</small>
+										</div>
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success bg-opacity-10 text-success fs-11 me-1">Section 3 ✓</span>
+											<small class="text-muted">PIB: 4 days</small>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium text-success">Delivered</span><br>
+										<span class="fs-12 text-muted">Jan 08, 2024</span><br>
+										<span class="fs-11 text-success">On Time</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">26 days</span><br>
+										<span class="fs-12 text-success">2 days early</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 3.56B</span>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="text-warning me-1">
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line"></i>
+										</div>
+										<span class="fs-12 fw-medium">4.7</span>
+									</div>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#" onclick="viewOrderDetails('ORD-2023-128')"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadInvoice('ORD-2023-128')"><i class="ri-file-download-line me-2"></i>Download Invoice</a></li>
+											<li><a class="dropdown-item" href="#" onclick="downloadDocuments('ORD-2023-128')"><i class="ri-folder-download-line me-2"></i>Download All Docs</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item" href="#" onclick="reorderItem('ORD-2023-128')"><i class="ri-repeat-line me-2"></i>Reorder</a></li>
+											<li><a class="dropdown-item" href="#" onclick="shareOrder('ORD-2023-128')"><i class="ri-share-line me-2"></i>Share</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Pagination -->
+				<div class="d-flex justify-content-center justify-content-sm-between align-items-center text-center flex-wrap gap-2 showing-wrap p-4">
+					<span class="fs-12 fw-medium">Showing 5 of 55 Completed Orders</span>
+					<nav aria-label="Page navigation">
+						<ul class="pagination mb-0 justify-content-center">
+							<li class="page-item">
+								<a class="page-link icon" href="#" aria-label="Previous">
+									<i class="material-symbols-outlined">keyboard_arrow_left</i>
+								</a>
+							</li>
+							<li class="page-item"><a class="page-link active" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">...</a></li>
+							<li class="page-item"><a class="page-link" href="#">11</a></li>
+							<li class="page-item">
+								<a class="page-link icon" href="#" aria-label="Next">
+									<i class="material-symbols-outlined">keyboard_arrow_right</i>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Performance Analytics -->
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-header bg-transparent border-bottom p-4">
+					<h5 class="mb-0">
+						<i class="ri-bar-chart-line me-2 text-primary"></i>Completion Performance Analysis
+					</h5>
+				</div>
+				<div class="card-body p-4">
+					<div class="row g-4">
+						<div class="col-md-6">
+							<div class="d-flex align-items-center p-3 bg-success bg-opacity-10 rounded-3">
+								<div class="flex-shrink-0">
+									<i class="ri-check-double-line fs-24 text-success"></i>
+								</div>
+								<div class="flex-grow-1 ms-3">
+									<h6 class="mb-1">On-Time Deliveries</h6>
+									<div class="d-flex align-items-center">
+										<span class="fw-bold fs-18 text-success me-2">92%</span>
+										<span class="fs-12 text-muted">(51 of 55 orders)</span>
+									</div>
+									<p class="mb-0 text-muted fs-12">Excellent delivery performance</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="d-flex align-items-center p-3 bg-warning bg-opacity-10 rounded-3">
+								<div class="flex-shrink-0">
+									<i class="ri-time-line fs-24 text-warning"></i>
+								</div>
+								<div class="flex-grow-1 ms-3">
+									<h6 class="mb-1">Average Processing Time</h6>
+									<div class="d-flex align-items-center">
+										<span class="fw-bold fs-18 text-warning me-2">28 days</span>
+										<span class="fs-12 text-success">↓ 2 days</span>
+									</div>
+									<p class="mb-0 text-muted fs-12">Improved from last month</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="d-flex align-items-center p-3 bg-primary bg-opacity-10 rounded-3">
+								<div class="flex-shrink-0">
+									<i class="ri-file-check-line fs-24 text-primary"></i>
+								</div>
+								<div class="flex-grow-1 ms-3">
+									<h6 class="mb-1">Document Accuracy</h6>
+									<div class="d-flex align-items-center">
+										<span class="fw-bold fs-18 text-primary me-2">98%</span>
+										<span class="fs-12 text-success">↑ 3%</span>
+									</div>
+									<p class="mb-0 text-muted fs-12">Minimal revision requirements</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="d-flex align-items-center p-3 bg-info bg-opacity-10 rounded-3">
+								<div class="flex-shrink-0">
+									<i class="ri-customer-service-line fs-24 text-info"></i>
+								</div>
+								<div class="flex-grow-1 ms-3">
+									<h6 class="mb-1">Customer Satisfaction</h6>
+									<div class="d-flex align-items-center">
+										<span class="fw-bold fs-18 text-info me-2">4.8/5</span>
+										<span class="fs-12 text-success">↑ 0.2</span>
+									</div>
+									<p class="mb-0 text-muted fs-12">Excellent service rating</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-header bg-transparent border-bottom p-4">
+					<h5 class="mb-0">
+						<i class="ri-trophy-line me-2 text-primary"></i>Top Performing Routes
+					</h5>
+				</div>
+				<div class="card-body p-4">
+					<div class="d-flex flex-column gap-3">
+						<div class="d-flex justify-content-between align-items-center">
+							<div>
+								<span class="fw-medium">Shanghai → Jakarta</span><br>
+								<small class="text-muted">18 completed orders</small>
+							</div>
+							<div class="text-end">
+								<span class="badge bg-success bg-opacity-10 text-success">95% On-Time</span>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<div>
+								<span class="fw-medium">Singapore → Surabaya</span><br>
+								<small class="text-muted">12 completed orders</small>
+							</div>
+							<div class="text-end">
+								<span class="badge bg-success bg-opacity-10 text-success">92% On-Time</span>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<div>
+								<span class="fw-medium">Tokyo → Jakarta</span><br>
+								<small class="text-muted">10 completed orders</small>
+							</div>
+							<div class="text-end">
+								<span class="badge bg-warning bg-opacity-10 text-warning">88% On-Time</span>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<div>
+								<span class="fw-medium">Busan → Jakarta</span><br>
+								<small class="text-muted">8 completed orders</small>
+							</div>
+							<div class="text-end">
+								<span class="badge bg-success bg-opacity-10 text-success">94% On-Time</span>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<div>
+								<span class="fw-medium">Guangzhou → Jakarta</span><br>
+								<small class="text-muted">7 completed orders</small>
+							</div>
+							<div class="text-end">
+								<span class="badge bg-success bg-opacity-10 text-success">90% On-Time</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Quick Actions -->
+			<div class="card bg-success bg-opacity-10 border-0 rounded-3">
+				<div class="card-body p-4">
+					<h6 class="text-success mb-3">
+						<i class="ri-lightbulb-line me-2"></i>Completion Insights
+					</h6>
+					<ul class="list-unstyled mb-0">
+						<li class="mb-2">
+							<i class="ri-check-line text-success me-2"></i>
+							<small>92% of orders delivered on time or early</small>
+						</li>
+						<li class="mb-2">
+							<i class="ri-check-line text-success me-2"></i>
+							<small>Average customer rating improved to 4.8/5</small>
+						</li>
+						<li class="mb-2">
+							<i class="ri-check-line text-success me-2"></i>
+							<small>Processing time reduced by 2 days</small>
+						</li>
+						<li class="mb-0">
+							<i class="ri-check-line text-success me-2"></i>
+							<small>Document accuracy at 98% - excellent quality</small>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Order Details Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Order Details - <span id="modalOrderId"></span></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row g-4">
+					<div class="col-md-6">
+						<h6>Customer Information</h6>
+						<div class="bg-light p-3 rounded">
+							<p class="mb-1"><strong>Company:</strong> <span id="modalCustomer"></span></p>
+							<p class="mb-1"><strong>Product:</strong> <span id="modalProduct"></span></p>
+							<p class="mb-1"><strong>Route:</strong> <span id="modalRoute"></span></p>
+							<p class="mb-0"><strong>Value:</strong> <span id="modalValue"></span></p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h6>Completion Timeline</h6>
+						<div class="bg-light p-3 rounded">
+							<div class="d-flex justify-content-between mb-2">
+								<span>Section 1 (VO):</span>
+								<span class="text-success" id="modalSection1">✓ 2 days</span>
+							</div>
+							<div class="d-flex justify-content-between mb-2">
+								<span>Section 2 (Transit):</span>
+								<span class="text-success" id="modalSection2">✓ 18 days</span>
+							</div>
+							<div class="d-flex justify-content-between mb-2">
+								<span>Section 3 (PIB):</span>
+								<span class="text-success" id="modalSection3">✓ 3 days</span>
+							</div>
+							<hr>
+							<div class="d-flex justify-content-between">
+								<strong>Total Time:</strong>
+								<strong class="text-success" id="modalTotalTime">23 days</strong>
+							</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<h6>Documents Completed</h6>
+						<div class="row g-2">
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">CI (Commercial Invoice) ✓</span>
+							</div>
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">PL (Packing List) ✓</span>
+							</div>
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">VO (Verification Officer) ✓</span>
+							</div>
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">BL (Bill of Landing) ✓</span>
+							</div>
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">LS (Laporan Surveyor) ✓</span>
+							</div>
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">FE (Form E) ✓</span>
+							</div>
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">PIB (Pelaporan Import Barang) ✓</span>
+							</div>
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">Customs Billing ✓</span>
+							</div>
+							<div class="col-md-4">
+								<span class="badge bg-success bg-opacity-10 text-success p-2 w-100">Clearance Certificate ✓</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="downloadInvoice()">Download Invoice</button>
+				<button type="button" class="btn btn-success" onclick="reorderItem()">Reorder</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+// Order Details Functions
+function viewOrderDetails(orderId) {
+	// Sample data - in real app, this would fetch from API
+	const orderData = {
+		'ORD-2023-156': {
+			customer: 'PT. Maju Jaya',
+			product: 'Cotton Fabric Rolls',
+			route: 'Shanghai → Jakarta',
+			value: 'Rp 1.45B',
+			section1: '✓ 2 days',
+			section2: '✓ 18 days',
+			section3: '✓ 3 days',
+			totalTime: '23 days'
+		}
+		// Add more order data as needed
+	};
+	
+	const order = orderData[orderId] || orderData['ORD-2023-156'];
+	
+	document.getElementById('modalOrderId').textContent = orderId;
+	document.getElementById('modalCustomer').textContent = order.customer;
+	document.getElementById('modalProduct').textContent = order.product;
+	document.getElementById('modalRoute').textContent = order.route;
+	document.getElementById('modalValue').textContent = order.value;
+	document.getElementById('modalSection1').textContent = order.section1;
+	document.getElementById('modalSection2').textContent = order.section2;
+	document.getElementById('modalSection3').textContent = order.section3;
+	document.getElementById('modalTotalTime').textContent = order.totalTime;
+	
+	var modal = new bootstrap.Modal(document.getElementById('orderDetailsModal'));
+	modal.show();
+}
+
+function downloadInvoice(orderId) {
+	showSuccessToast(`Invoice for ${orderId || 'selected order'} downloaded successfully.`);
+}
+
+function downloadDocuments(orderId) {
+	showSuccessToast(`All documents for ${orderId} downloaded as ZIP file.`);
+}
+
+function reorderItem(orderId) {
+	if (confirm(`Create a new order based on ${orderId || 'this order'}?`)) {
+		showSuccessToast(`New order created based on ${orderId || 'selected order'}. Redirecting to order form...`);
+		// In real app, would redirect to create order page with pre-filled data
+	}
+}
+
+function shareOrder(orderId) {
+	if (navigator.share) {
+		navigator.share({
+			title: `Order ${orderId}`,
+			text: `Check out this completed import order: ${orderId}`,
+			url: window.location.href
+		});
+	} else {
+		// Fallback for browsers that don't support Web Share API
+		const url = `${window.location.origin}/order/${orderId}`;
+		navigator.clipboard.writeText(url).then(() => {
+			showSuccessToast('Order link copied to clipboard!');
+		});
+	}
+}
+
+// Utility Functions
+function showSuccessToast(message) {
+	// Create and show toast notification
+	const toast = document.createElement('div');
+	toast.className = 'toast align-items-center text-white bg-success border-0 position-fixed top-0 end-0 m-3';
+	toast.style.zIndex = '9999';
+	toast.innerHTML = `
+		<div class="d-flex">
+			<div class="toast-body">${message}</div>
+			<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+		</div>
+	`;
+	document.body.appendChild(toast);
+	const bsToast = new bootstrap.Toast(toast);
+	bsToast.show();
+	
+	// Remove toast after it's hidden
+	toast.addEventListener('hidden.bs.toast', () => {
+		document.body.removeChild(toast);
+	});
+}
+
+// Filter functionality
+document.addEventListener('DOMContentLoaded', function() {
+	// Add event listeners for filters
+	const filters = document.querySelectorAll('.form-select');
+	filters.forEach(filter => {
+		filter.addEventListener('change', function() {
+			// In real app, this would filter the table data
+			console.log('Filter changed:', this.value);
+		});
+	});
+});
+</script>
+
+{{ template "dashboard_bottom" . }}

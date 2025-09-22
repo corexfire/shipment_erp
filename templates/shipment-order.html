@@ -1,0 +1,666 @@
+{{ template "dashboard_top" . }}
+
+<div class="main-content-container overflow-hidden">
+	<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+		<h3 class="mb-0">All Order List</h3>
+		<div class="d-flex gap-2">
+			<button class="btn btn-primary btn-sm">
+				<i class="ri-add-line me-1"></i>New Order
+			</button>
+			<button class="btn btn-outline-primary btn-sm">
+				<i class="ri-download-line me-1"></i>Export
+			</button>
+		</div>
+	</div>
+
+	<!-- Filter Section -->
+	<div class="card bg-white border-0 rounded-3 mb-4">
+		<div class="card-body p-4">
+			<div class="row g-3">
+				<div class="col-md-3">
+					<label class="form-label">Status</label>
+					<select class="form-select">
+						<option value="">All Status</option>
+						<option value="section1">Section 1 - VO Pending</option>
+						<option value="section2">Section 2 - BL Processing</option>
+						<option value="section3">Section 3 - PIB Complete</option>
+						<option value="delivered">Delivered</option>
+						<option value="cancelled">Cancelled</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<label class="form-label">Customer</label>
+					<select class="form-select">
+						<option value="">All Customers</option>
+						<option value="pt-maju-jaya">PT. Maju Jaya</option>
+						<option value="cv-elektronik">CV. Elektronik Prima</option>
+						<option value="pt-mesin">PT. Mesin Industri</option>
+						<option value="cv-kimia">CV. Kimia Sejahtera</option>
+						<option value="pt-otomotif">PT. Otomotif Nusantara</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<label class="form-label">Date Range</label>
+					<input type="date" class="form-control" value="2024-01-01">
+				</div>
+				<div class="col-md-3">
+					<label class="form-label">&nbsp;</label>
+					<div class="d-flex gap-2">
+						<button class="btn btn-primary">Filter</button>
+						<button class="btn btn-outline-secondary">Reset</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Orders Table -->
+	<div class="card bg-white border-0 rounded-3 mb-4">
+		<div class="card-body p-0">
+			<div class="default-table-area style-two">
+				<div class="table-responsive">
+					<table class="table align-middle">
+						<thead>
+							<tr>
+								<th scope="col">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="selectAll">
+									</div>
+								</th>
+								<th scope="col">Order ID</th>
+								<th scope="col">Customer</th>
+								<th scope="col">Product Category</th>
+								<th scope="col">Container Info</th>
+								<th scope="col">Route</th>
+								<th scope="col">Status</th>
+								<th scope="col">Documents</th>
+								<th scope="col">Value</th>
+								<th scope="col">ETA</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Section 1 Orders - VO Pending/Document Issue -->
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-ship-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2024-001</h6>
+											<span class="fs-12 text-muted">Jan 15, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-11.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">PT. Maju Jaya</h6>
+											<span class="fs-12 text-muted">Textiles Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<i class="ri-shirt-line text-danger me-2"></i>
+										<span>Textiles & Garments</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">MSKU7834562</span><br>
+										<span class="fs-12 text-muted">20ft Container</span>
+									</div>
+								</td>
+								<td>
+									<span class="fs-12">Shanghai → Jakarta</span><br>
+									<span class="fs-11 text-muted">Tanjung Priok</span>
+								</td>
+								<td>
+									<span class="badge bg-warning bg-opacity-10 text-warning p-2 fs-12 fw-normal">
+										<i class="ri-file-text-line me-1"></i>VO Pending
+									</span>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">CI ✓</span>
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">PL ✓</span>
+										<span class="badge bg-danger bg-opacity-10 text-danger fs-11">VO ✗</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 1.87B</span>
+								</td>
+								<td>
+									<span class="fs-12">Feb 20, 2024</span><br>
+									<span class="fs-11 text-muted">35 days</span>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-edit-line me-2"></i>Edit Order</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-file-upload-line me-2"></i>Upload VO</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item text-danger" href="#"><i class="ri-delete-bin-line me-2"></i>Cancel Order</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-ship-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2024-002</h6>
+											<span class="fs-12 text-muted">Jan 18, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-12.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">CV. Elektronik Prima</h6>
+											<span class="fs-12 text-muted">Electronics Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<i class="ri-computer-line text-primary me-2"></i>
+										<span>Electronics & Components</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">ELEC9876543</span><br>
+										<span class="fs-12 text-muted">40ft Container</span>
+									</div>
+								</td>
+								<td>
+									<span class="fs-12">Singapore → Surabaya</span><br>
+									<span class="fs-11 text-muted">Tanjung Perak</span>
+								</td>
+								<td>
+									<span class="badge bg-danger bg-opacity-10 text-danger p-2 fs-12 fw-normal">
+										<i class="ri-alert-line me-1"></i>Document Issue
+									</span>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">CI ✓</span>
+										<span class="badge bg-danger bg-opacity-10 text-danger fs-11">PL ✗</span>
+										<span class="badge bg-secondary bg-opacity-10 text-secondary fs-11">VO -</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 1.34B</span>
+								</td>
+								<td>
+									<span class="fs-12">Feb 25, 2024</span><br>
+									<span class="fs-11 text-muted">38 days</span>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-edit-line me-2"></i>Edit Order</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-file-upload-line me-2"></i>Upload PL</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item text-danger" href="#"><i class="ri-delete-bin-line me-2"></i>Cancel Order</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<!-- Section 2 Orders - BL Processing/In Transit -->
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-ship-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2024-003</h6>
+											<span class="fs-12 text-muted">Jan 10, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-13.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">PT. Mesin Industri</h6>
+											<span class="fs-12 text-muted">Machinery Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<i class="ri-settings-line text-success me-2"></i>
+										<span>Industrial Machinery</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">MACH5432109</span><br>
+										<span class="fs-12 text-muted">40ft HC Container</span>
+									</div>
+								</td>
+								<td>
+									<span class="fs-12">Tokyo → Jakarta</span><br>
+									<span class="fs-11 text-muted">Tanjung Priok</span>
+								</td>
+								<td>
+									<span class="badge bg-info bg-opacity-10 text-info p-2 fs-12 fw-normal">
+										<i class="ri-ship-line me-1"></i>In Transit
+									</span>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">BL ✓</span>
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">LS ✓</span>
+										<span class="badge bg-warning bg-opacity-10 text-warning fs-11">FE ⏳</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 3.67B</span>
+								</td>
+								<td>
+									<span class="fs-12">Feb 15, 2024</span><br>
+									<span class="fs-11 text-muted">30 days</span>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-map-pin-line me-2"></i>Track Shipment</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-file-upload-line me-2"></i>Upload FE</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-notification-line me-2"></i>Send Update</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-ship-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2024-004</h6>
+											<span class="fs-12 text-muted">Jan 12, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-14.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">CV. Kimia Sejahtera</h6>
+											<span class="fs-12 text-muted">Chemical Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<i class="ri-flask-line text-info me-2"></i>
+										<span>Chemical Products</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">CHEM2109876</span><br>
+										<span class="fs-12 text-muted">20ft Tank Container</span>
+									</div>
+								</td>
+								<td>
+									<span class="fs-12">Busan → Jakarta</span><br>
+									<span class="fs-11 text-muted">Tanjung Priok</span>
+								</td>
+								<td>
+									<span class="badge bg-primary bg-opacity-10 text-primary p-2 fs-12 fw-normal">
+										<i class="ri-file-list-line me-1"></i>BL Processing
+									</span>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<span class="badge bg-warning bg-opacity-10 text-warning fs-11">BL ⏳</span>
+										<span class="badge bg-secondary bg-opacity-10 text-secondary fs-11">LS -</span>
+										<span class="badge bg-secondary bg-opacity-10 text-secondary fs-11">FE -</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 1.02B</span>
+								</td>
+								<td>
+									<span class="fs-12">Feb 18, 2024</span><br>
+									<span class="fs-11 text-muted">33 days</span>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-edit-line me-2"></i>Edit Order</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-file-check-line me-2"></i>Finalize BL</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-notification-line me-2"></i>Send Update</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<!-- Section 3 Orders - PIB Complete -->
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-ship-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2024-005</h6>
+											<span class="fs-12 text-muted">Jan 05, 2024</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-15.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">PT. Otomotif Nusantara</h6>
+											<span class="fs-12 text-muted">Automotive Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<i class="ri-car-line text-warning me-2"></i>
+										<span>Automotive Parts</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">AUTO8765432</span><br>
+										<span class="fs-12 text-muted">40ft Container</span>
+									</div>
+								</td>
+								<td>
+									<span class="fs-12">Guangzhou → Jakarta</span><br>
+									<span class="fs-11 text-muted">Tanjung Priok</span>
+								</td>
+								<td>
+									<span class="badge bg-success bg-opacity-10 text-success p-2 fs-12 fw-normal">
+										<i class="ri-check-line me-1"></i>PIB Complete
+									</span>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">PIB ✓</span>
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">Billing ✓</span>
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">Clearance ✓</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 2.34B</span>
+								</td>
+								<td>
+									<span class="fs-12">Feb 10, 2024</span><br>
+									<span class="fs-11 text-success">Ready for Delivery</span>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-truck-line me-2"></i>Schedule Delivery</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-file-download-line me-2"></i>Download Documents</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item text-success" href="#"><i class="ri-check-double-line me-2"></i>Mark as Delivered</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<!-- Delivered Orders -->
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="flex-shrink-0">
+											<div class="wh-40 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+												<i class="ri-check-double-line fs-18"></i>
+											</div>
+										</div>
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">ORD-2023-156</h6>
+											<span class="fs-12 text-muted">Dec 20, 2023</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<img src="/assets/images/user-11.jpg" class="wh-40 rounded-circle" alt="customer">
+										<div class="ms-2">
+											<h6 class="fw-medium fs-14 mb-0">PT. Maju Jaya</h6>
+											<span class="fs-12 text-muted">Textiles Import</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<i class="ri-shirt-line text-danger me-2"></i>
+										<span>Textiles & Garments</span>
+									</div>
+								</td>
+								<td>
+									<div>
+										<span class="fw-medium">TEXT1234567</span><br>
+										<span class="fs-12 text-muted">20ft Container</span>
+									</div>
+								</td>
+								<td>
+									<span class="fs-12">Shanghai → Jakarta</span><br>
+									<span class="fs-11 text-muted">Tanjung Priok</span>
+								</td>
+								<td>
+									<span class="badge bg-success bg-opacity-10 text-success p-2 fs-12 fw-normal">
+										<i class="ri-check-double-line me-1"></i>Delivered
+									</span>
+								</td>
+								<td>
+									<div class="d-flex flex-column gap-1">
+										<span class="badge bg-success bg-opacity-10 text-success fs-11">Complete ✓</span>
+									</div>
+								</td>
+								<td>
+									<span class="fw-medium">Rp 1.45B</span>
+								</td>
+								<td>
+									<span class="fs-12">Jan 25, 2024</span><br>
+									<span class="fs-11 text-success">Delivered</span>
+								</td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View Details</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-file-download-line me-2"></i>Download Invoice</a></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-star-line me-2"></i>Rate Service</a></li>
+											<li><hr class="dropdown-divider"></li>
+											<li><a class="dropdown-item" href="#"><i class="ri-repeat-line me-2"></i>Reorder</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Pagination -->
+				<div class="d-flex justify-content-center justify-content-sm-between align-items-center text-center flex-wrap gap-2 showing-wrap p-4">
+					<span class="fs-12 fw-medium">Showing 6 of 156 Orders</span>
+					<nav aria-label="Page navigation">
+						<ul class="pagination mb-0 justify-content-center">
+							<li class="page-item">
+								<a class="page-link icon" href="#" aria-label="Previous">
+									<i class="material-symbols-outlined">keyboard_arrow_left</i>
+								</a>
+							</li>
+							<li class="page-item"><a class="page-link active" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">...</a></li>
+							<li class="page-item"><a class="page-link" href="#">26</a></li>
+							<li class="page-item">
+								<a class="page-link icon" href="#" aria-label="Next">
+									<i class="material-symbols-outlined">keyboard_arrow_right</i>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Summary Cards -->
+	<div class="row">
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-file-text-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Section 1 Orders</span>
+							<h3 class="fs-20 mt-1 mb-0">18</h3>
+							<span class="fs-12 text-muted">VO Pending/Document Issue</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-ship-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Section 2 Orders</span>
+							<h3 class="fs-20 mt-1 mb-0">42</h3>
+							<span class="fs-12 text-muted">BL Processing/In Transit</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-check-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Section 3 Orders</span>
+							<h3 class="fs-20 mt-1 mb-0">41</h3>
+							<span class="fs-12 text-muted">PIB Complete</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-check-double-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Delivered Orders</span>
+							<h3 class="fs-20 mt-1 mb-0">55</h3>
+							<span class="fs-12 text-muted">Successfully Completed</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{ template "dashboard_bottom" . }}

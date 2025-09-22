@@ -1,0 +1,332 @@
+{{define "dashboard_sidebar"}}
+<!-- Start Sidebar Area -->
+<div class="sidebar-area" id="sidebar-area">
+	<div class="logo position-relative">
+
+		<button
+			class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y"
+			id="sidebar-burger-menu"
+		>
+			<i data-feather="x"></i>
+		</button>
+	</div>
+
+	<aside
+		id="layout-menu"
+		class="layout-menu menu-vertical menu active"
+		data-simplebar
+	>
+		<ul class="menu-inner">
+			<li class="menu-title small text-uppercase">
+				<span class="menu-title-text">MAIN</span>
+			</li>
+			<li class="menu-item open">
+				<a
+					href="javascript:void(0);"
+					class="menu-link menu-toggle active"
+				>
+					<span class="material-symbols-outlined menu-icon"
+						>dashboard</span
+					>
+					<span class="title">Dashboard</span>
+				</a>
+
+				<ul class="menu-sub">
+					<li class="menu-item">
+						<a href="/dashboard/crm" class="menu-link">
+							CRM
+						</a>
+					</li>
+					<li class="menu-item mb-0">
+						<a href="/dashboard/shipment" class="menu-link">
+							Shipment
+						</a>
+					</li>
+					<li class="menu-item mb-0">
+						<a href="/dashboard/finance" class="menu-link">
+							Finance
+						</a>
+					</li>
+					<li class="menu-item mb-0">
+						<a href="/dashboard/hrm" class="menu-link"> HRM </a>
+					</li>
+				</ul>
+			</li>
+
+            <li class="menu-item">
+                <a
+                        href="javascript:void(0);"
+                        class="menu-link menu-toggle"
+                >
+					<span class="material-symbols-outlined menu-icon"
+                    >local_shipping</span
+                    >
+                    <span class="title">Shipment ERP</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a
+                                href="javascript:void(0);"
+                                class="menu-link menu-toggle"
+                        >
+                            <span class="title">Orders Management</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/dashboard/orders" class="menu-link">All Orders</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/orders/create" class="menu-link">Create Order</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/orders/pending" class="menu-link">Pending Orders</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/orders/completed" class="menu-link">Completed Orders</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a
+                                href="javascript:void(0);"
+                                class="menu-link menu-toggle"
+                        >
+                            <span class="title">Documents</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/dashboard/documents" class="menu-link">All Documents</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/documents/upload" class="menu-link">Upload Document</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/documents/ci" class="menu-link">Commercial Invoice</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/documents/pl" class="menu-link">Packing List</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/documents/bl" class="menu-link">Bill of Lading</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/documents/ls" class="menu-link">Laporan Surveyor</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/dashboard/documents/fe" class="menu-link">Form E</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a
+                                href="javascript:void(0);"
+                                class="menu-link menu-toggle"
+                        >
+                            <span class="title">Verification</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/verification/vo" class="menu-link">VO Requests</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/verification/pending" class="menu-link">Pending Verification</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/verification/approved" class="menu-link">Approved</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/verification/rejected" class="menu-link">Rejected</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a
+                                href="javascript:void(0);"
+                                class="menu-link menu-toggle"
+                        >
+                            <span class="title">Shipments</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/shipments" class="menu-link">All Shipments</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/shipments/create" class="menu-link">Create Shipment</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/shipments/draft-bl" class="menu-link">Draft BL</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/shipments/final-bl" class="menu-link">Final BL</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/shipments/containers" class="menu-link">Containers</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a
+                                href="javascript:void(0);"
+                                class="menu-link menu-toggle"
+                        >
+                            <span class="title">PIB Management</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/pib" class="menu-link">PIB Checklist</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/pib/create" class="menu-link">Create PIB</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/pib/pending" class="menu-link">Pending Review</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/pib/approved" class="menu-link">Approved</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/pib/rejected" class="menu-link">Rejected</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a
+                                href="javascript:void(0);"
+                                class="menu-link menu-toggle"
+                        >
+                            <span class="title">Customs & Billing</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/billing" class="menu-link">Billing</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/billing/create" class="menu-link">Create Billing</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/insurance" class="menu-link">Insurance</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/customs/charges" class="menu-link">Customs Charges</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/tracking" class="menu-link">
+                            <span class="title">Tracking</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a
+                                href="javascript:void(0);"
+                                class="menu-link menu-toggle"
+                        >
+                            <span class="title">Reports</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/reports/orders" class="menu-link">Order Reports</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/reports/shipments" class="menu-link">Shipment Reports</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/reports/pib" class="menu-link">PIB Reports</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/reports/financial" class="menu-link">Financial Reports</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a
+                                href="javascript:void(0);"
+                                class="menu-link menu-toggle"
+                        >
+                            <span class="title">Settings</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/settings/users" class="menu-link">User Management</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/settings/roles" class="menu-link">Roles & Permissions</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/settings/document-types" class="menu-link">Document Types</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/settings/ports" class="menu-link">Ports</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/settings/system" class="menu-link">System Settings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+
+
+			<li class="menu-title small text-uppercase">
+				<span class="menu-title-text">OTHERS</span>
+			</li>
+
+			<li class="menu-item">
+				<a href="my-profile" class="menu-link">
+					<span class="material-symbols-outlined menu-icon"
+						>account_circle</span
+					>
+					<span class="title">My Profile</span>
+				</a>
+			</li>
+
+			<li class="menu-item">
+				<a
+					href="javascript:void(0);"
+					class="menu-link menu-toggle active"
+				>
+					<span class="material-symbols-outlined menu-icon"
+						>settings</span
+					>
+					<span class="title">Settings</span>
+				</a>
+				<ul class="menu-sub">
+					<li class="menu-item">
+						<a href="account-settings" class="menu-link">
+							Account Settings
+						</a>
+					</li>
+					<li class="menu-item">
+						<a href="change-password" class="menu-link">
+							Change Password
+						</a>
+					</li>
+					<li class="menu-item">
+						<a href="privacy-policy" class="menu-link">
+							Privacy Policy
+						</a>
+					</li>
+					<li class="menu-item">
+						<a href="terms-conditions" class="menu-link">
+							Terms & Conditions
+						</a>
+					</li>
+				</ul>
+			</li>
+
+
+			<li class="menu-item">
+				<a href="logout" class="menu-link">
+					<span class="material-symbols-outlined menu-icon"
+						>logout</span
+					>
+					<span class="title">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</aside>
+</div>
+<!-- End Sidebar Area -->
+
+{{end}}

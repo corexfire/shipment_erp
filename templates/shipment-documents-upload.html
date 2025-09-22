@@ -1,0 +1,862 @@
+{{ template "dashboard_top" . }}
+
+<div class="main-content-container overflow-hidden">
+	<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+		<div>
+			<h3 class="mb-0">Upload Documents</h3>
+			<p class="text-muted mb-0">Upload import documents for the three-section workflow process</p>
+		</div>
+		<div class="d-flex gap-2">
+			<button class="btn btn-outline-secondary btn-sm" onclick="window.history.back()">
+				<i class="ri-arrow-left-line me-1"></i>Back to Documents
+			</button>
+			<button class="btn btn-outline-info btn-sm" onclick="showUploadGuide()">
+				<i class="ri-question-line me-1"></i>Upload Guide
+			</button>
+		</div>
+	</div>
+
+	<!-- Upload Progress Overview -->
+	<div class="row mb-4">
+		<div class="col-xl-4 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-file-text-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Section 1 Docs</span>
+							<h3 class="fs-20 mt-1 mb-0">3 Required</h3>
+							<span class="fs-12 text-muted">CI, PL, VO</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-4 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-ship-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Section 2 Docs</span>
+							<h3 class="fs-20 mt-1 mb-0">3 Required</h3>
+							<span class="fs-12 text-muted">BL, LS, FE</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-4 col-sm-6">
+			<div class="card bg-white border-0 rounded-3 mb-4">
+				<div class="card-body p-4">
+					<div class="d-flex align-items-center">
+						<div class="flex-shrink-0">
+							<div class="wh-65 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+								<i class="ri-government-line fs-24"></i>
+							</div>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<span class="fs-12 fw-medium text-secondary">Section 3 Docs</span>
+							<h3 class="fs-20 mt-1 mb-0">3 Required</h3>
+							<span class="fs-12 text-muted">PIB, Billing, Clearance</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Upload Form -->
+	<div class="card bg-white border-0 rounded-3 mb-4">
+		<div class="card-header bg-transparent border-bottom p-4">
+			<h5 class="mb-0">
+				<i class="ri-upload-cloud-line me-2 text-primary"></i>Document Upload Form
+			</h5>
+		</div>
+		<div class="card-body p-4">
+			<form id="documentUploadForm">
+				<div class="row g-4">
+					<!-- Order Selection -->
+					<div class="col-md-6">
+						<label class="form-label fw-medium">Select Order <span class="text-danger">*</span></label>
+						<select class="form-select" id="orderSelect" required>
+							<option value="">Choose an order...</option>
+							<option value="ORD-2024-001">ORD-2024-001 - PT. Maju Jaya (Cotton Fabric Rolls)</option>
+							<option value="ORD-2024-002">ORD-2024-002 - CV. Elektronik Prima (Electronic Components)</option>
+							<option value="ORD-2024-003">ORD-2024-003 - PT. Mesin Industri (Industrial Machinery)</option>
+							<option value="ORD-2024-004">ORD-2024-004 - CV. Kimia Sejahtera (Chemical Products)</option>
+							<option value="ORD-2024-005">ORD-2024-005 - PT. Otomotif Nusantara (Automotive Parts)</option>
+						</select>
+						<div class="form-text">Select the order this document belongs to</div>
+					</div>
+
+					<!-- Section Selection -->
+					<div class="col-md-6">
+						<label class="form-label fw-medium">Workflow Section <span class="text-danger">*</span></label>
+						<select class="form-select" id="sectionSelect" required onchange="updateDocumentTypes()">
+							<option value="">Choose section...</option>
+							<option value="section1">Section 1 - Initial Documentation</option>
+							<option value="section2">Section 2 - Shipping & Transit</option>
+							<option value="section3">Section 3 - Customs Clearance</option>
+						</select>
+						<div class="form-text">Select the workflow section for this document</div>
+					</div>
+
+					<!-- Document Type Selection -->
+					<div class="col-md-6">
+						<label class="form-label fw-medium">Document Type <span class="text-danger">*</span></label>
+						<select class="form-select" id="documentTypeSelect" required disabled>
+							<option value="">Select section first...</option>
+						</select>
+						<div class="form-text" id="documentTypeHelp">Document type will be available after selecting section</div>
+					</div>
+
+					<!-- Priority Level -->
+					<div class="col-md-6">
+						<label class="form-label fw-medium">Priority Level</label>
+						<select class="form-select" id="prioritySelect">
+							<option value="normal">Normal</option>
+							<option value="high">High Priority</option>
+							<option value="urgent">Urgent</option>
+						</select>
+						<div class="form-text">Set processing priority for this document</div>
+					</div>
+
+					<!-- Document Title -->
+					<div class="col-12">
+						<label class="form-label fw-medium">Document Title <span class="text-danger">*</span></label>
+						<input type="text" class="form-control" id="documentTitle" placeholder="Enter document title..." required>
+						<div class="form-text">Provide a descriptive title for the document</div>
+					</div>
+
+					<!-- Document Description -->
+					<div class="col-12">
+						<label class="form-label fw-medium">Description</label>
+						<textarea class="form-control" id="documentDescription" rows="3" placeholder="Add document description, notes, or special instructions..."></textarea>
+						<div class="form-text">Optional: Add any additional information about this document</div>
+					</div>
+
+					<!-- File Upload Area -->
+					<div class="col-12">
+						<label class="form-label fw-medium">Upload File <span class="text-danger">*</span></label>
+						<div class="upload-area border-2 border-dashed rounded-3 p-5 text-center" id="uploadArea">
+							<div class="upload-content">
+								<div class="wh-80 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
+									<i class="ri-upload-cloud-2-line fs-32"></i>
+								</div>
+								<h5 class="mb-2">Drag & Drop Files Here</h5>
+								<p class="text-muted mb-3">or click to browse files</p>
+								<input type="file" class="form-control d-none" id="fileInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" multiple>
+								<button type="button" class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+									<i class="ri-folder-open-line me-1"></i>Browse Files
+								</button>
+								<div class="mt-3">
+									<small class="text-muted">
+										Supported formats: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG<br>
+										Maximum file size: 10MB per file
+									</small>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- File Preview Area -->
+					<div class="col-12" id="filePreviewArea" style="display: none;">
+						<label class="form-label fw-medium">Selected Files</label>
+						<div id="filePreviewList" class="border rounded-3 p-3 bg-light">
+							<!-- File previews will be inserted here -->
+						</div>
+					</div>
+
+					<!-- Additional Options -->
+					<div class="col-12">
+						<div class="card bg-light border-0">
+							<div class="card-body p-3">
+								<h6 class="mb-3">Additional Options</h6>
+								<div class="row g-3">
+									<div class="col-md-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="notifyCustomer">
+											<label class="form-check-label" for="notifyCustomer">
+												Notify Customer
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="requireApproval" checked>
+											<label class="form-check-label" for="requireApproval">
+												Require Approval
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="autoProcess">
+											<label class="form-check-label" for="autoProcess">
+												Auto-process if valid
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Submit Buttons -->
+					<div class="col-12">
+						<div class="d-flex gap-2 justify-content-end">
+							<button type="button" class="btn btn-outline-secondary" onclick="resetForm()">
+								<i class="ri-refresh-line me-1"></i>Reset Form
+							</button>
+							<button type="button" class="btn btn-outline-primary" onclick="saveDraft()">
+								<i class="ri-save-line me-1"></i>Save as Draft
+							</button>
+							<button type="submit" class="btn btn-primary">
+								<i class="ri-upload-line me-1"></i>Upload Document
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Upload History -->
+	<div class="card bg-white border-0 rounded-3 mb-4">
+		<div class="card-header bg-transparent border-bottom p-4">
+			<h5 class="mb-0">
+				<i class="ri-history-line me-2 text-primary"></i>Recent Uploads
+			</h5>
+		</div>
+		<div class="card-body p-0">
+			<div class="table-responsive">
+				<table class="table align-middle mb-0">
+					<thead class="table-light">
+						<tr>
+							<th>Document</th>
+							<th>Order</th>
+							<th>Section</th>
+							<th>Type</th>
+							<th>Upload Time</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<div class="flex-shrink-0">
+										<div class="wh-32 bg-danger bg-opacity-10 text-danger rounded-circle d-flex align-items-center justify-content-center">
+											<i class="ri-file-pdf-line fs-14"></i>
+										</div>
+									</div>
+									<div class="ms-2">
+										<span class="fw-medium fs-14">Commercial_Invoice_Latest.pdf</span>
+									</div>
+								</div>
+							</td>
+							<td>
+								<span class="fw-medium">ORD-2024-006</span><br>
+								<small class="text-muted">PT. Maju Jaya</small>
+							</td>
+							<td>
+								<span class="badge bg-warning bg-opacity-10 text-warning">Section 1</span>
+							</td>
+							<td>CI</td>
+							<td>
+								<span class="fw-medium">2 min ago</span><br>
+								<small class="text-muted">Jan 30, 2024</small>
+							</td>
+							<td>
+								<span class="badge bg-success bg-opacity-10 text-success">
+									<i class="ri-check-line me-1"></i>Uploaded
+								</span>
+							</td>
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+										Actions
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View</a></li>
+										<li><a class="dropdown-item" href="#"><i class="ri-download-line me-2"></i>Download</a></li>
+										<li><a class="dropdown-item" href="#"><i class="ri-edit-line me-2"></i>Edit Details</a></li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<div class="flex-shrink-0">
+										<div class="wh-32 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+											<i class="ri-file-excel-line fs-14"></i>
+										</div>
+									</div>
+									<div class="ms-2">
+										<span class="fw-medium fs-14">Packing_List_Updated.xlsx</span>
+									</div>
+								</div>
+							</td>
+							<td>
+								<span class="fw-medium">ORD-2024-006</span><br>
+								<small class="text-muted">PT. Maju Jaya</small>
+							</td>
+							<td>
+								<span class="badge bg-warning bg-opacity-10 text-warning">Section 1</span>
+							</td>
+							<td>PL</td>
+							<td>
+								<span class="fw-medium">5 min ago</span><br>
+								<small class="text-muted">Jan 30, 2024</small>
+							</td>
+							<td>
+								<span class="badge bg-warning bg-opacity-10 text-warning">
+									<i class="ri-time-line me-1"></i>Processing
+								</span>
+							</td>
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+										Actions
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View</a></li>
+										<li><a class="dropdown-item" href="#"><i class="ri-download-line me-2"></i>Download</a></li>
+										<li><a class="dropdown-item" href="#"><i class="ri-edit-line me-2"></i>Edit Details</a></li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<div class="flex-shrink-0">
+										<div class="wh-32 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+											<i class="ri-file-pdf-line fs-14"></i>
+										</div>
+									</div>
+									<div class="ms-2">
+										<span class="fw-medium fs-14">Bill_of_Landing_Final.pdf</span>
+									</div>
+								</div>
+							</td>
+							<td>
+								<span class="fw-medium">ORD-2024-005</span><br>
+								<small class="text-muted">PT. Otomotif Nusantara</small>
+							</td>
+							<td>
+								<span class="badge bg-info bg-opacity-10 text-info">Section 2</span>
+							</td>
+							<td>BL</td>
+							<td>
+								<span class="fw-medium">1 hour ago</span><br>
+								<small class="text-muted">Jan 30, 2024</small>
+							</td>
+							<td>
+								<span class="badge bg-success bg-opacity-10 text-success">
+									<i class="ri-check-line me-1"></i>Approved
+								</span>
+							</td>
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+										Actions
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#"><i class="ri-eye-line me-2"></i>View</a></li>
+										<li><a class="dropdown-item" href="#"><i class="ri-download-line me-2"></i>Download</a></li>
+										<li><a class="dropdown-item" href="#"><i class="ri-share-line me-2"></i>Share</a></li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Document Requirements Guide -->
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="card bg-warning bg-opacity-10 border-0 rounded-3 mb-4">
+				<div class="card-header bg-transparent border-bottom p-4">
+					<h6 class="mb-0 text-warning">
+						<i class="ri-file-text-line me-2"></i>Section 1 Requirements
+					</h6>
+				</div>
+				<div class="card-body p-4">
+					<div class="d-flex flex-column gap-3">
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-warning me-2 mt-1"></i>
+							<div>
+								<strong>CI - Commercial Invoice</strong><br>
+								<small class="text-muted">Product pricing and commercial details</small>
+							</div>
+						</div>
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-warning me-2 mt-1"></i>
+							<div>
+								<strong>PL - Packing List</strong><br>
+								<small class="text-muted">Detailed product listing and packaging</small>
+							</div>
+						</div>
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-warning me-2 mt-1"></i>
+							<div>
+								<strong>VO - Verification Officer</strong><br>
+								<small class="text-muted">Official verification and approval</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="card bg-info bg-opacity-10 border-0 rounded-3 mb-4">
+				<div class="card-header bg-transparent border-bottom p-4">
+					<h6 class="mb-0 text-info">
+						<i class="ri-ship-line me-2"></i>Section 2 Requirements
+					</h6>
+				</div>
+				<div class="card-body p-4">
+					<div class="d-flex flex-column gap-3">
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-info me-2 mt-1"></i>
+							<div>
+								<strong>BL - Bill of Landing</strong><br>
+								<small class="text-muted">Shipping and cargo documentation</small>
+							</div>
+						</div>
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-info me-2 mt-1"></i>
+							<div>
+								<strong>LS - Laporan Surveyor</strong><br>
+								<small class="text-muted">Surveyor inspection report</small>
+							</div>
+						</div>
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-info me-2 mt-1"></i>
+							<div>
+								<strong>FE - Form E</strong><br>
+								<small class="text-muted">ASEAN trade certificate</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="card bg-success bg-opacity-10 border-0 rounded-3 mb-4">
+				<div class="card-header bg-transparent border-bottom p-4">
+					<h6 class="mb-0 text-success">
+						<i class="ri-government-line me-2"></i>Section 3 Requirements
+					</h6>
+				</div>
+				<div class="card-body p-4">
+					<div class="d-flex flex-column gap-3">
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-success me-2 mt-1"></i>
+							<div>
+								<strong>PIB - Pelaporan Import Barang</strong><br>
+								<small class="text-muted">Import declaration to customs</small>
+							</div>
+						</div>
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-success me-2 mt-1"></i>
+							<div>
+								<strong>Customs Billing</strong><br>
+								<small class="text-muted">Duty and tax calculations</small>
+							</div>
+						</div>
+						<div class="d-flex align-items-start">
+							<i class="ri-checkbox-circle-line text-success me-2 mt-1"></i>
+							<div>
+								<strong>Clearance Certificate</strong><br>
+								<small class="text-muted">Final customs approval</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Upload Guide Modal -->
+<div class="modal fade" id="uploadGuideModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Document Upload Guide</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row g-4">
+					<div class="col-12">
+						<h6>File Format Requirements</h6>
+						<ul class="list-unstyled">
+							<li class="mb-2"><i class="ri-check-line text-success me-2"></i>PDF files for official documents</li>
+							<li class="mb-2"><i class="ri-check-line text-success me-2"></i>Excel files for packing lists and calculations</li>
+							<li class="mb-2"><i class="ri-check-line text-success me-2"></i>Word documents for reports and letters</li>
+							<li class="mb-2"><i class="ri-check-line text-success me-2"></i>Images (JPG, PNG) for photos and scanned documents</li>
+						</ul>
+					</div>
+					<div class="col-12">
+						<h6>File Size Limits</h6>
+						<ul class="list-unstyled">
+							<li class="mb-2"><i class="ri-information-line text-info me-2"></i>Maximum 10MB per file</li>
+							<li class="mb-2"><i class="ri-information-line text-info me-2"></i>Multiple files can be uploaded at once</li>
+							<li class="mb-2"><i class="ri-information-line text-info me-2"></i>Large files will be compressed automatically</li>
+						</ul>
+					</div>
+					<div class="col-12">
+						<h6>Document Naming Convention</h6>
+						<ul class="list-unstyled">
+							<li class="mb-2"><i class="ri-lightbulb-line text-warning me-2"></i>Use descriptive names (e.g., "Commercial_Invoice_ORD2024001.pdf")</li>
+							<li class="mb-2"><i class="ri-lightbulb-line text-warning me-2"></i>Include order number in filename</li>
+							<li class="mb-2"><i class="ri-lightbulb-line text-warning me-2"></i>Avoid special characters and spaces</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Upload Progress Modal -->
+<div class="modal fade" id="uploadProgressModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Uploading Documents</h5>
+			</div>
+			<div class="modal-body text-center p-4">
+				<div class="wh-80 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
+					<i class="ri-upload-cloud-2-line fs-32"></i>
+				</div>
+				<h6 class="mb-3">Processing your documents...</h6>
+				<div class="progress mb-3" style="height: 8px;">
+					<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" id="uploadProgressBar"></div>
+				</div>
+				<p class="text-muted mb-0" id="uploadStatusText">Preparing upload...</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+// Document type mappings for each section
+const documentTypes = {
+	section1: [
+		{ value: 'ci', text: 'CI - Commercial Invoice', description: 'Product pricing and commercial details' },
+		{ value: 'pl', text: 'PL - Packing List', description: 'Detailed product listing and packaging' },
+		{ value: 'vo', text: 'VO - Verification Officer', description: 'Official verification and approval' }
+	],
+	section2: [
+		{ value: 'bl', text: 'BL - Bill of Landing', description: 'Shipping and cargo documentation' },
+		{ value: 'ls', text: 'LS - Laporan Surveyor', description: 'Surveyor inspection report' },
+		{ value: 'fe', text: 'FE - Form E', description: 'ASEAN trade certificate' }
+	],
+	section3: [
+		{ value: 'pib', text: 'PIB - Pelaporan Import Barang', description: 'Import declaration to customs' },
+		{ value: 'billing', text: 'Customs Billing', description: 'Duty and tax calculations' },
+		{ value: 'clearance', text: 'Clearance Certificate', description: 'Final customs approval' }
+	]
+};
+
+// Update document types based on selected section
+function updateDocumentTypes() {
+	const sectionSelect = document.getElementById('sectionSelect');
+	const documentTypeSelect = document.getElementById('documentTypeSelect');
+	const documentTypeHelp = document.getElementById('documentTypeHelp');
+	
+	const selectedSection = sectionSelect.value;
+	
+	// Clear existing options
+	documentTypeSelect.innerHTML = '<option value="">Choose document type...</option>';
+	
+	if (selectedSection && documentTypes[selectedSection]) {
+		documentTypeSelect.disabled = false;
+		
+		// Add options for selected section
+		documentTypes[selectedSection].forEach(docType => {
+			const option = document.createElement('option');
+			option.value = docType.value;
+			option.textContent = docType.text;
+			documentTypeSelect.appendChild(option);
+		});
+		
+		documentTypeHelp.textContent = 'Select the specific document type for this section';
+	} else {
+		documentTypeSelect.disabled = true;
+		documentTypeHelp.textContent = 'Document type will be available after selecting section';
+	}
+}
+
+// File upload handling
+document.addEventListener('DOMContentLoaded', function() {
+	const uploadArea = document.getElementById('uploadArea');
+	const fileInput = document.getElementById('fileInput');
+	const filePreviewArea = document.getElementById('filePreviewArea');
+	const filePreviewList = document.getElementById('filePreviewList');
+	
+	// Drag and drop functionality
+	uploadArea.addEventListener('dragover', function(e) {
+		e.preventDefault();
+		uploadArea.classList.add('border-primary', 'bg-primary', 'bg-opacity-10');
+	});
+	
+	uploadArea.addEventListener('dragleave', function(e) {
+		e.preventDefault();
+		uploadArea.classList.remove('border-primary', 'bg-primary', 'bg-opacity-10');
+	});
+	
+	uploadArea.addEventListener('drop', function(e) {
+		e.preventDefault();
+		uploadArea.classList.remove('border-primary', 'bg-primary', 'bg-opacity-10');
+		
+		const files = e.dataTransfer.files;
+		handleFiles(files);
+	});
+	
+	// File input change
+	fileInput.addEventListener('change', function(e) {
+		handleFiles(e.target.files);
+	});
+	
+	// Handle selected files
+	function handleFiles(files) {
+		if (files.length === 0) return;
+		
+		filePreviewList.innerHTML = '';
+		filePreviewArea.style.display = 'block';
+		
+		Array.from(files).forEach((file, index) => {
+			const fileItem = createFilePreview(file, index);
+			filePreviewList.appendChild(fileItem);
+		});
+	}
+	
+	// Create file preview item
+	function createFilePreview(file, index) {
+		const fileItem = document.createElement('div');
+		fileItem.className = 'file-preview-item d-flex align-items-center justify-content-between p-3 border rounded mb-2';
+		
+		const fileInfo = document.createElement('div');
+		fileInfo.className = 'd-flex align-items-center';
+		
+		const fileIcon = getFileIcon(file.type);
+		const fileSize = formatFileSize(file.size);
+		
+		fileInfo.innerHTML = `
+			<div class="flex-shrink-0 me-3">
+				<div class="wh-40 ${fileIcon.bgClass} ${fileIcon.textClass} rounded-circle d-flex align-items-center justify-content-center">
+					<i class="${fileIcon.icon} fs-18"></i>
+				</div>
+			</div>
+			<div>
+				<h6 class="mb-1 fs-14">${file.name}</h6>
+				<small class="text-muted">${fileSize} • ${file.type || 'Unknown type'}</small>
+			</div>
+		`;
+		
+		const removeBtn = document.createElement('button');
+		removeBtn.type = 'button';
+		removeBtn.className = 'btn btn-sm btn-outline-danger';
+		removeBtn.innerHTML = '<i class="ri-close-line"></i>';
+		removeBtn.onclick = () => fileItem.remove();
+		
+		fileItem.appendChild(fileInfo);
+		fileItem.appendChild(removeBtn);
+		
+		return fileItem;
+	}
+	
+	// Get file icon based on type
+	function getFileIcon(fileType) {
+		if (fileType.includes('pdf')) {
+			return { icon: 'ri-file-pdf-line', bgClass: 'bg-danger', textClass: 'text-danger' };
+		} else if (fileType.includes('excel') || fileType.includes('spreadsheet')) {
+			return { icon: 'ri-file-excel-line', bgClass: 'bg-success', textClass: 'text-success' };
+		} else if (fileType.includes('word') || fileType.includes('document')) {
+			return { icon: 'ri-file-word-line', bgClass: 'bg-info', textClass: 'text-info' };
+		} else if (fileType.includes('image')) {
+			return { icon: 'ri-image-line', bgClass: 'bg-warning', textClass: 'text-warning' };
+		} else {
+			return { icon: 'ri-file-line', bgClass: 'bg-secondary', textClass: 'text-secondary' };
+		}
+	}
+	
+	// Format file size
+	function formatFileSize(bytes) {
+		if (bytes === 0) return '0 Bytes';
+		const k = 1024;
+		const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+		const i = Math.floor(Math.log(bytes) / Math.log(k));
+		return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+	}
+});
+
+// Form submission
+document.getElementById('documentUploadForm').addEventListener('submit', function(e) {
+	e.preventDefault();
+	
+	// Validate form
+	if (!validateForm()) {
+		return;
+	}
+	
+	// Show upload progress modal
+	const uploadModal = new bootstrap.Modal(document.getElementById('uploadProgressModal'));
+	uploadModal.show();
+	
+	// Simulate upload progress
+	simulateUpload();
+});
+
+// Form validation
+function validateForm() {
+	const orderSelect = document.getElementById('orderSelect');
+	const sectionSelect = document.getElementById('sectionSelect');
+	const documentTypeSelect = document.getElementById('documentTypeSelect');
+	const documentTitle = document.getElementById('documentTitle');
+	const fileInput = document.getElementById('fileInput');
+	
+	if (!orderSelect.value) {
+		showErrorToast('Please select an order');
+		return false;
+	}
+	
+	if (!sectionSelect.value) {
+		showErrorToast('Please select a workflow section');
+		return false;
+	}
+	
+	if (!documentTypeSelect.value) {
+		showErrorToast('Please select a document type');
+		return false;
+	}
+	
+	if (!documentTitle.value.trim()) {
+		showErrorToast('Please enter a document title');
+		return false;
+	}
+	
+	if (!fileInput.files.length) {
+		showErrorToast('Please select at least one file to upload');
+		return false;
+	}
+	
+	return true;
+}
+
+// Simulate upload progress
+function simulateUpload() {
+	const progressBar = document.getElementById('uploadProgressBar');
+	const statusText = document.getElementById('uploadStatusText');
+	
+	let progress = 0;
+	const interval = setInterval(() => {
+		progress += Math.random() * 15;
+		
+		if (progress >= 100) {
+			progress = 100;
+			clearInterval(interval);
+			
+			setTimeout(() => {
+				bootstrap.Modal.getInstance(document.getElementById('uploadProgressModal')).hide();
+				showSuccessToast('Documents uploaded successfully! They have been sent for review.');
+				resetForm();
+			}, 500);
+		}
+		
+		progressBar.style.width = progress + '%';
+		
+		if (progress < 30) {
+			statusText.textContent = 'Validating files...';
+		} else if (progress < 60) {
+			statusText.textContent = 'Uploading documents...';
+		} else if (progress < 90) {
+			statusText.textContent = 'Processing documents...';
+		} else {
+			statusText.textContent = 'Finalizing upload...';
+		}
+	}, 200);
+}
+
+// Reset form
+function resetForm() {
+	document.getElementById('documentUploadForm').reset();
+	document.getElementById('documentTypeSelect').disabled = true;
+	document.getElementById('documentTypeSelect').innerHTML = '<option value="">Select section first...</option>';
+	document.getElementById('filePreviewArea').style.display = 'none';
+	document.getElementById('filePreviewList').innerHTML = '';
+}
+
+// Save as draft
+function saveDraft() {
+	showSuccessToast('Draft saved successfully! You can continue editing later.');
+}
+
+// Show upload guide
+function showUploadGuide() {
+	const modal = new bootstrap.Modal(document.getElementById('uploadGuideModal'));
+	modal.show();
+}
+
+// Utility functions
+function showSuccessToast(message) {
+	const toast = document.createElement('div');
+	toast.className = 'toast align-items-center text-white bg-success border-0 position-fixed top-0 end-0 m-3';
+	toast.style.zIndex = '9999';
+	toast.innerHTML = `
+		<div class="d-flex">
+			<div class="toast-body">${message}</div>
+			<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+		</div>
+	`;
+	document.body.appendChild(toast);
+	const bsToast = new bootstrap.Toast(toast);
+	bsToast.show();
+	
+	toast.addEventListener('hidden.bs.toast', () => {
+		document.body.removeChild(toast);
+	});
+}
+
+function showErrorToast(message) {
+	const toast = document.createElement('div');
+	toast.className = 'toast align-items-center text-white bg-danger border-0 position-fixed top-0 end-0 m-3';
+	toast.style.zIndex = '9999';
+	toast.innerHTML = `
+		<div class="d-flex">
+			<div class="toast-body">${message}</div>
+			<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+		</div>
+	`;
+	document.body.appendChild(toast);
+	const bsToast = new bootstrap.Toast(toast);
+	bsToast.show();
+	
+	toast.addEventListener('hidden.bs.toast', () => {
+		document.body.removeChild(toast);
+	});
+}
+</script>
+
+{{ template "dashboard_bottom" . }}

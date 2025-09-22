@@ -1,0 +1,512 @@
+{{ template "dashboard_top" . }}
+
+<div class="main-content-container overflow-hidden">
+	<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+		<div>
+			<h3 class="mb-0">Create New Import Order</h3>
+			<p class="text-muted mb-0">Fill in the details to create a new import shipment order</p>
+		</div>
+		<div class="d-flex gap-2">
+			<button type="button" class="btn btn-outline-secondary btn-sm">
+				<i class="ri-save-line me-1"></i>Save as Draft
+			</button>
+			<a href="/shipment-order" class="btn btn-outline-primary btn-sm">
+				<i class="ri-arrow-left-line me-1"></i>Back to Orders
+			</a>
+		</div>
+	</div>
+
+	<form id="createOrderForm">
+		<div class="row">
+			<!-- Left Column -->
+			<div class="col-lg-8">
+				<!-- Customer Information -->
+				<div class="card bg-white border-0 rounded-3 mb-4">
+					<div class="card-header bg-transparent border-bottom p-4">
+						<h5 class="mb-0">
+							<i class="ri-building-line me-2 text-primary"></i>Customer Information
+						</h5>
+					</div>
+					<div class="card-body p-4">
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label class="form-label">Customer Company <span class="text-danger">*</span></label>
+								<select class="form-select" required>
+									<option value="">Select Customer</option>
+									<option value="pt-maju-jaya">PT. Maju Jaya - Textiles Import</option>
+									<option value="cv-elektronik">CV. Elektronik Prima - Electronics Import</option>
+									<option value="pt-mesin">PT. Mesin Industri - Machinery Import</option>
+									<option value="cv-kimia">CV. Kimia Sejahtera - Chemical Import</option>
+									<option value="pt-otomotif">PT. Otomotif Nusantara - Automotive Import</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Contact Person</label>
+								<input type="text" class="form-control" placeholder="Enter contact person name" value="Budi Santoso">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Email Address</label>
+								<input type="email" class="form-control" placeholder="Enter email address" value="info@majujaya.co.id">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Phone Number</label>
+								<input type="tel" class="form-control" placeholder="Enter phone number" value="+62 21 1234 5678">
+							</div>
+							<div class="col-12">
+								<label class="form-label">Delivery Address</label>
+								<textarea class="form-control" rows="3" placeholder="Enter complete delivery address">Jl. Sudirman No. 123, Jakarta Pusat, DKI Jakarta 10220, Indonesia</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Product & Shipment Details -->
+				<div class="card bg-white border-0 rounded-3 mb-4">
+					<div class="card-header bg-transparent border-bottom p-4">
+						<h5 class="mb-0">
+							<i class="ri-box-line me-2 text-primary"></i>Product & Shipment Details
+						</h5>
+					</div>
+					<div class="card-body p-4">
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label class="form-label">Product Category <span class="text-danger">*</span></label>
+								<select class="form-select" required>
+									<option value="">Select Category</option>
+									<option value="textiles">Textiles & Garments</option>
+									<option value="electronics">Electronics & Components</option>
+									<option value="machinery">Industrial Machinery</option>
+									<option value="chemicals">Chemical Products</option>
+									<option value="automotive">Automotive Parts</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Product Description</label>
+								<input type="text" class="form-control" placeholder="Enter product description" value="Cotton Fabric Rolls">
+							</div>
+							<div class="col-md-4">
+								<label class="form-label">Quantity</label>
+								<input type="number" class="form-control" placeholder="Enter quantity" value="500">
+							</div>
+							<div class="col-md-4">
+								<label class="form-label">Unit</label>
+								<select class="form-select">
+									<option value="pcs">Pieces</option>
+									<option value="kg">Kilograms</option>
+									<option value="tons">Tons</option>
+									<option value="cbm">Cubic Meters</option>
+									<option value="rolls" selected>Rolls</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label class="form-label">Total Weight (KG)</label>
+								<input type="number" class="form-control" placeholder="Enter weight" value="12500">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Order Value <span class="text-danger">*</span></label>
+								<div class="input-group">
+									<span class="input-group-text">Rp</span>
+									<input type="text" class="form-control" placeholder="Enter order value" value="1,870,000,000" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Currency</label>
+								<select class="form-select">
+									<option value="idr" selected>Indonesian Rupiah (IDR)</option>
+									<option value="usd">US Dollar (USD)</option>
+									<option value="eur">Euro (EUR)</option>
+									<option value="cny">Chinese Yuan (CNY)</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Shipping Information -->
+				<div class="card bg-white border-0 rounded-3 mb-4">
+					<div class="card-header bg-transparent border-bottom p-4">
+						<h5 class="mb-0">
+							<i class="ri-ship-line me-2 text-primary"></i>Shipping Information
+						</h5>
+					</div>
+					<div class="card-body p-4">
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label class="form-label">Origin Port/Country <span class="text-danger">*</span></label>
+								<select class="form-select" required>
+									<option value="">Select Origin</option>
+									<option value="shanghai" selected>Shanghai, China</option>
+									<option value="singapore">Singapore</option>
+									<option value="tokyo">Tokyo, Japan</option>
+									<option value="busan">Busan, South Korea</option>
+									<option value="guangzhou">Guangzhou, China</option>
+									<option value="hong-kong">Hong Kong</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Destination Port <span class="text-danger">*</span></label>
+								<select class="form-select" required>
+									<option value="">Select Destination</option>
+									<option value="tanjung-priok" selected>Tanjung Priok, Jakarta</option>
+									<option value="tanjung-perak">Tanjung Perak, Surabaya</option>
+									<option value="belawan">Belawan, Medan</option>
+									<option value="makassar">Makassar Port</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label class="form-label">Container Type <span class="text-danger">*</span></label>
+								<select class="form-select" required>
+									<option value="">Select Type</option>
+									<option value="20ft" selected>20ft Standard</option>
+									<option value="40ft">40ft Standard</option>
+									<option value="40ft-hc">40ft High Cube</option>
+									<option value="20ft-tank">20ft Tank Container</option>
+									<option value="40ft-reefer">40ft Refrigerated</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label class="form-label">Number of Containers</label>
+								<input type="number" class="form-control" placeholder="Enter quantity" value="2" min="1">
+							</div>
+							<div class="col-md-4">
+								<label class="form-label">Shipping Method</label>
+								<select class="form-select">
+									<option value="fcl" selected>FCL (Full Container Load)</option>
+									<option value="lcl">LCL (Less Container Load)</option>
+									<option value="air">Air Freight</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Expected Departure Date</label>
+								<input type="date" class="form-control" value="2024-02-01">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Expected Arrival Date</label>
+								<input type="date" class="form-control" value="2024-02-20">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Document Requirements -->
+				<div class="card bg-white border-0 rounded-3 mb-4">
+					<div class="card-header bg-transparent border-bottom p-4">
+						<h5 class="mb-0">
+							<i class="ri-file-list-line me-2 text-primary"></i>Document Requirements
+						</h5>
+						<p class="text-muted mb-0 mt-1">Required documents for import process</p>
+					</div>
+					<div class="card-body p-4">
+						<div class="row g-3">
+							<div class="col-12">
+								<h6 class="mb-3">Section 1 - Initial Documents</h6>
+								<div class="row g-3">
+									<div class="col-md-6">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="ci-doc" checked>
+											<label class="form-check-label" for="ci-doc">
+												<strong>CI (Commercial Invoice)</strong>
+												<small class="d-block text-muted">Invoice from supplier</small>
+											</label>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="pl-doc" checked>
+											<label class="form-check-label" for="pl-doc">
+												<strong>PL (Packing List)</strong>
+												<small class="d-block text-muted">Detailed packing information</small>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="alert alert-info">
+									<i class="ri-information-line me-2"></i>
+									<strong>VO (Verification Officer)</strong> approval will be required after CI + PL submission. 
+									If documents are complete, shipment can proceed directly.
+								</div>
+							</div>
+							<div class="col-12 mt-4">
+								<h6 class="mb-3">Section 2 - Shipping Documents</h6>
+								<div class="row g-3">
+									<div class="col-md-4">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="bl-doc">
+											<label class="form-check-label" for="bl-doc">
+												<strong>BL (Bill of Landing)</strong>
+												<small class="d-block text-muted">Generated after loading</small>
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="ls-doc">
+											<label class="form-check-label" for="ls-doc">
+												<strong>LS (Laporan Surveyor)</strong>
+												<small class="d-block text-muted">Surveyor report</small>
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="fe-doc">
+											<label class="form-check-label" for="fe-doc">
+												<strong>FE (Form E)</strong>
+												<small class="d-block text-muted">Certificate of origin</small>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 mt-4">
+								<h6 class="mb-3">Section 3 - Customs Clearance</h6>
+								<div class="row g-3">
+									<div class="col-md-4">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="pib-doc">
+											<label class="form-check-label" for="pib-doc">
+												<strong>PIB (Pelaporan Import Barang)</strong>
+												<small class="d-block text-muted">Import declaration</small>
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="billing-doc">
+											<label class="form-check-label" for="billing-doc">
+												<strong>Customs Billing</strong>
+												<small class="d-block text-muted">Duty and tax calculation</small>
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="clearance-doc">
+											<label class="form-check-label" for="clearance-doc">
+												<strong>Clearance Certificate</strong>
+												<small class="d-block text-muted">Final customs approval</small>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Additional Information -->
+				<div class="card bg-white border-0 rounded-3 mb-4">
+					<div class="card-header bg-transparent border-bottom p-4">
+						<h5 class="mb-0">
+							<i class="ri-information-line me-2 text-primary"></i>Additional Information
+						</h5>
+					</div>
+					<div class="card-body p-4">
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label class="form-label">Special Instructions</label>
+								<textarea class="form-control" rows="3" placeholder="Enter any special handling instructions">Handle with care - fragile textile materials. Avoid moisture exposure.</textarea>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Internal Notes</label>
+								<textarea class="form-control" rows="3" placeholder="Internal notes for processing team">Priority customer - expedite processing. Contact customer for any delays.</textarea>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Insurance Required</label>
+								<select class="form-select">
+									<option value="yes" selected>Yes - Full Coverage</option>
+									<option value="partial">Partial Coverage</option>
+									<option value="no">No Insurance</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Priority Level</label>
+								<select class="form-select">
+									<option value="normal" selected>Normal</option>
+									<option value="high">High Priority</option>
+									<option value="urgent">Urgent</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right Column -->
+			<div class="col-lg-4">
+				<!-- Order Summary -->
+				<div class="card bg-white border-0 rounded-3 mb-4 position-sticky" style="top: 20px;">
+					<div class="card-header bg-transparent border-bottom p-4">
+						<h5 class="mb-0">
+							<i class="ri-file-text-line me-2 text-primary"></i>Order Summary
+						</h5>
+					</div>
+					<div class="card-body p-4">
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<span>Order ID:</span>
+							<span class="fw-medium">ORD-2024-NEW</span>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<span>Customer:</span>
+							<span class="fw-medium">PT. Maju Jaya</span>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<span>Product:</span>
+							<span class="fw-medium">Cotton Fabric Rolls</span>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<span>Route:</span>
+							<span class="fw-medium">Shanghai → Jakarta</span>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<span>Container:</span>
+							<span class="fw-medium">2x 20ft Standard</span>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<span>Weight:</span>
+							<span class="fw-medium">12,500 KG</span>
+						</div>
+						<hr>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<span class="fw-medium">Order Value:</span>
+							<span class="fw-bold text-primary fs-18">Rp 1.87B</span>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<span>Estimated Transit:</span>
+							<span class="fw-medium">19 days</span>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-4">
+							<span>Expected Delivery:</span>
+							<span class="fw-medium">Feb 20, 2024</span>
+						</div>
+
+						<!-- Workflow Status -->
+						<div class="mb-4">
+							<h6 class="mb-3">Import Workflow Progress</h6>
+							<div class="d-flex flex-column gap-2">
+								<div class="d-flex align-items-center">
+									<div class="wh-20 bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center me-2">
+										<i class="ri-file-text-line fs-12"></i>
+									</div>
+									<span class="fs-14">Section 1: Document Preparation</span>
+								</div>
+								<div class="d-flex align-items-center opacity-50">
+									<div class="wh-20 bg-secondary bg-opacity-10 text-secondary rounded-circle d-flex align-items-center justify-content-center me-2">
+										<i class="ri-ship-line fs-12"></i>
+									</div>
+									<span class="fs-14">Section 2: Shipping & Transit</span>
+								</div>
+								<div class="d-flex align-items-center opacity-50">
+									<div class="wh-20 bg-secondary bg-opacity-10 text-secondary rounded-circle d-flex align-items-center justify-content-center me-2">
+										<i class="ri-check-line fs-12"></i>
+									</div>
+									<span class="fs-14">Section 3: Customs Clearance</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-primary">
+								<i class="ri-add-line me-1"></i>Create Order
+							</button>
+							<button type="button" class="btn btn-outline-secondary">
+								<i class="ri-save-line me-1"></i>Save as Draft
+							</button>
+							<button type="button" class="btn btn-outline-info">
+								<i class="ri-eye-line me-1"></i>Preview Order
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Quick Tips -->
+				<div class="card bg-primary bg-opacity-10 border-0 rounded-3">
+					<div class="card-body p-4">
+						<h6 class="text-primary mb-3">
+							<i class="ri-lightbulb-line me-2"></i>Import Process Tips
+						</h6>
+						<ul class="list-unstyled mb-0">
+							<li class="mb-2">
+								<i class="ri-check-line text-success me-2"></i>
+								<small>Ensure CI + PL are complete before VO submission</small>
+							</li>
+							<li class="mb-2">
+								<i class="ri-check-line text-success me-2"></i>
+								<small>BL will be generated after container loading</small>
+							</li>
+							<li class="mb-2">
+								<i class="ri-check-line text-success me-2"></i>
+								<small>PIB processing requires all shipping documents</small>
+							</li>
+							<li class="mb-0">
+								<i class="ri-check-line text-success me-2"></i>
+								<small>Contact customer for any document revisions</small>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body text-center p-5">
+				<div class="wh-80 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
+					<i class="ri-check-double-line fs-32"></i>
+				</div>
+				<h4 class="mb-3">Order Created Successfully!</h4>
+				<p class="text-muted mb-4">Order ORD-2024-NEW has been created and is now in Section 1 (Document Preparation) phase.</p>
+				<div class="d-flex gap-2 justify-content-center">
+					<a href="/shipment-order" class="btn btn-primary">View All Orders</a>
+					<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Create Another</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+document.getElementById('createOrderForm').addEventListener('submit', function(e) {
+	e.preventDefault();
+	
+	// Show success modal
+	var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+	successModal.show();
+});
+
+// Auto-fill customer details when customer is selected
+document.querySelector('select[name="customer"]')?.addEventListener('change', function() {
+	const customerData = {
+		'pt-maju-jaya': {
+			contact: 'Budi Santoso',
+			email: 'info@majujaya.co.id',
+			phone: '+62 21 1234 5678',
+			address: 'Jl. Sudirman No. 123, Jakarta Pusat, DKI Jakarta 10220, Indonesia'
+		},
+		'cv-elektronik': {
+			contact: 'Sari Dewi',
+			email: 'contact@elektronikprima.com',
+			phone: '+62 31 9876 5432',
+			address: 'Jl. Raya Industri No. 456, Surabaya, Jawa Timur 60123, Indonesia'
+		}
+		// Add more customer data as needed
+	};
+	
+	const selectedCustomer = customerData[this.value];
+	if (selectedCustomer) {
+		document.querySelector('input[placeholder="Enter contact person name"]').value = selectedCustomer.contact;
+		document.querySelector('input[placeholder="Enter email address"]').value = selectedCustomer.email;
+		document.querySelector('input[placeholder="Enter phone number"]').value = selectedCustomer.phone;
+		document.querySelector('textarea[placeholder="Enter complete delivery address"]').value = selectedCustomer.address;
+	}
+});
+</script>
+
+{{ template "dashboard_bottom" . }}
